@@ -1,0 +1,61 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="toolbar-color">
+    <ion-title>
+    Eventos
+    </ion-title>
+    <ion-avatar [routerLink]="'/perfil-libreria'" class="avatar-profile">
+      <img src="../../../assets/profile-l.jpg">
+    </ion-avatar>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div class="ion-padding">
+    <ion-toolbar>
+      <ion-segment>
+        <ion-segment-button (click)="loadEventosPropios()" value="propio">
+         Eventos
+        </ion-segment-button>
+        <ion-segment-button (click)="loadEventosAjenos()" value="ajeno">
+          Libros
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
+    
+      <ion-card>
+        <img src="../../../assets/eventoa.jpg">
+        <ion-card-header color="light" style="height: 45px;">
+          <ion-card-title class="card-titulo"><h4>Nombre evento</h4></ion-card-title>
+        </ion-card-header>
+        <ion-card-content style="margin-top: 12px;">
+          <b>Descripción: </b><br>
+          <b>Lugar: </b><br>
+          <b>Fecha: </b><br>
+          <b>Hora: </b>
+        </ion-card-content>
+        <ion-item color="light">
+          <ion-button class="option" (click)="editarEvento()" fill="outline" slot="end" >Editar</ion-button>
+          <ion-button class="option" (click)="borrarEvento()" fill="outline" slot="end" color="danger">Borrar</ion-button> 
+        </ion-item>
+      </ion-card> <!-- el metodo esta icompleto -  ver QRBar -->
+    </div>
+  
+    <ion-infinite-scroll threshold="200px">
+    <ion-infinite-scroll-content
+      loadingSpinner="circular"
+      loadingText="Cargando eventos...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+</ion-content>
+  
+  <ion-footer class="bar-stable">
+    <ion-toolbar class="tool-foot" color="light">
+      <div class="content-button-event">
+          <ion-button class="button-event" (click)="crearEvento()" fill="solid" slot="end" color="tertiary">Crear evento
+           <ion-icon name="add"></ion-icon> 
+          </ion-button>
+      </div>
+    </ion-toolbar>
+  </ion-footer>
+  

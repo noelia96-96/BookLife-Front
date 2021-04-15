@@ -1,0 +1,42 @@
+body {
+    overflow-y:hidden;
+    background-color: white;
+}
+.toolbar-color {
+    --ion-color-primary-tint: #4c8dff;
+}
+.content-form {
+    margin-top: 88px;
+    width: 347px;
+    margin-left: 13px;
+}
+.ilustration-registro {
+    margin-top: 66px;
+    width: 301px;
+    position: relative;
+    right: 0px;
+    left: 48px;
+}
+.person, .lock, .mail {
+    font-size: 19px;
+    margin-right: 15px;
+}
+.usuario, .contraseña, .email, .ciudad, .sexo {
+    border: 1px solid #3880ff;
+    border-radius: 30px;
+    height: 43px;
+    width: 291px;
+    font-size: 15px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+.register-button {
+    display: inline-block;
+    margin-left: 120px;
+}
+.registro-button {
+    border-radius:60px 20px 20px;
+    font-weight: bold;
+    width: 97px;
+    --ion-color-primary-tint: #4c8dff;
+}

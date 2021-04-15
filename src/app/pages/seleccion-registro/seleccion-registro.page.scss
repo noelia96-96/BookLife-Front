@@ -1,0 +1,40 @@
+.toolbar-color {
+    --ion-color-primary-tint: #4c8dff;
+}
+.content {
+    text-align: center;
+}
+.ilustration-bibliofilo, .ilustration-librero {
+    width:258px;
+    position: relative;
+    left: 58px;
+    text-align: center;
+}
+.ilustration-bibliofilo, .ilustration-librero {
+    background-color: #FFF;
+    padding: 20px;
+    border-radius: 5px;
+    margin-right: 30px;
+    height: 268px;
+    margin-bottom: 17px;
+    box-shadow: 2px 2px 10px #3171e075;
+}
+.ilustration-bibliofilo {
+    margin-top: 32px;
+}
+.ilustration-librero {
+    margin-top:5px;
+}
+.texto-seleccion {
+    text-align: center;
+    position: relative;
+    top: 40px;
+    font-family: system-ui;
+}
+.texto-bibliofilo, .texto-librero {
+    display: block;
+    font-family: system-ui;
+    color:  #4c8dff;
+    font-weight: bold;
+    
+}

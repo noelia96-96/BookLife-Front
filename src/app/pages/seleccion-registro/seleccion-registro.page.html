@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar class="toolbar-color" color="primary">
+    <ion-title>Registro</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/'" [mode]="'md'"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="content"> 
+  <div class="ilustration-bibliofilo" (click)="registroBibliofilo()">
+    <span class="texto-bibliofilo">BIBLIÓFILO</span>
+    <img src="../../../assets/bibliofilo.png">
+  </div>
+  <div class="ilustration-librero" (click)="registroLibrero()">
+    <span class="texto-librero">LIBRERO</span>
+    <img src="../../../assets/librero.jpg">
+  </div>
+</ion-content>
+

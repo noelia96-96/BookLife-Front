@@ -1,0 +1,51 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      Registrar Evento
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <ion-list class="register-content">
+    <ion-item class="nombre">
+      <ion-label><b>Nombre: </b></ion-label>
+      <ion-input  type="text" name="evento" placeholder="Nombre"></ion-input>
+    </ion-item>
+
+    <ion-item class="descripcion">
+      <ion-label><b>Descripción: </b></ion-label>
+      <ion-input type="text" name="evento" placeholder="Descripcion"></ion-input>
+    </ion-item>
+  <ion-item class="lugar">
+    <ion-label><b>Lugar: </b></ion-label>
+    <ion-input type="text" name="evento" placeholder="Lugar"></ion-input>
+  </ion-item>
+   <ion-item class="fecha">
+    <ion-label><b>Fecha: </b></ion-label>
+    <ion-datetime  mmin="2021" max="2023" displayFormat="DD/MM/YYYY" pikerFormat="DD MM YYYY" placeholder="Fecha"></ion-datetime>
+  </ion-item>
+  <ion-item class="hora">
+    <ion-label><b>Hora: </b></ion-label>
+    <ion-datetime displayFormat="HH:mm" placeholder="Hora"></ion-datetime>
+  </ion-item>
+  </ion-list>
+  <div class="registration-event">
+    <img src="../../../assets/createvent.jpg">
+  </div>
+</ion-content>
+
+<ion-footer class="bar-stable">
+  <ion-toolbar color="light">
+    <div style="text-align: center;">
+  <ion-button (click)="guardar()" disabled="{{!this.nombreEvento || !this.fecha }}" color="secondary" style="margin-left:0%" >
+    <ion-icon name="save-outline"></ion-icon>
+    <ion-label style="margin-left: 10px;">Guardar</ion-label>
+  </ion-button>
+  <ion-button (click)="cancelar()" color="secondary" style="margin-left:5%" >
+    <ion-icon name="close"></ion-icon>
+    <ion-label style="margin-left: 10px;">Cancelar</ion-label>
+  </ion-button> 
+</div>
+</ion-toolbar>
+</ion-footer>

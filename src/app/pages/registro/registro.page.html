@@ -1,0 +1,54 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="toolbar-color">
+    <ion-title>Registro</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button [defaultHref]="'/'" [mode]="'md'"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<body class="global-content">
+<form class="content-form">
+    <ion-item class="usuario">
+      <ion-icon class="person" name="person-outline"></ion-icon>
+      <ion-input [(ngModel)]="usuario" name="usuario" type="text" placeholder="*Usuario" autofocus required></ion-input>
+    </ion-item>
+    <ion-item class="contraseña">
+      <ion-icon class="lock" name="lock-closed-outline"></ion-icon>
+      <ion-input [(ngModel)]="pwd" name="contraseña" type="password" placeholder="*Contraseña" required></ion-input>
+    </ion-item>
+    <ion-item class="email">
+      <ion-icon class="mail" name="mail-outline"></ion-icon>
+      <ion-input [(ngModel)]="email" pattern="/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/" name="email" type="mail" autocomplete="email" placeholder="*Email" required></ion-input>
+    </ion-item>
+    <ion-item class="ciudad">
+      <ion-icon class="city" name="business-outline"></ion-icon>
+        <ion-label name="city" required>*Ciudad</ion-label>
+        <ion-select  interface="popover">
+          <ion-select-option value="almeria">Almería</ion-select-option>
+          <ion-select-option value="cadiz">Cádiz</ion-select-option>
+          <ion-select-option value="cordoba">Córdoba</ion-select-option>
+          <ion-select-option value="granada">Granada</ion-select-option>
+          <ion-select-option value="huelva">Huelva</ion-select-option>
+          <ion-select-option value="jaen">Jaén</ion-select-option>
+          <ion-select-option value="malaga">Málaga</ion-select-option>
+          <ion-select-option value="sevilla">Sevilla</ion-select-option>
+        </ion-select>
+      </ion-item>
+      <ion-item class="sexo">
+        <ion-icon class="sex" name="contrast-outline"></ion-icon>
+          <ion-label name="sexo" required>*Sexo</ion-label>
+          <ion-select  interface="popover">
+            <ion-select-option value="hombre">Hombre</ion-select-option>
+            <ion-select-option value="mujer">Mujer</ion-select-option>
+          </ion-select>
+        </ion-item>
+      
+    <div class="register-button">
+      <ion-button class="registro-button" (click)="registro()" disabled="{{!this.usuario || !this.pwd || !this.email}}" expand="block"  color="primary">Registrar</ion-button>
+    </div>
+  </form>
+  <div class="ilustration-registro">
+    <img src="../../../assets/registro-bibliofilo.jpg" alt="">
+  </div>
+</body>
