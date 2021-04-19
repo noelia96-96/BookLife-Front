@@ -18,7 +18,7 @@ export class LoginPage implements OnInit {
     private alertController: AlertController
     ) { }
 
-  public usuario:string;
+  public nombre:string;
   public pwd:string;
 
   async ngOnInit() {
@@ -34,7 +34,7 @@ export class LoginPage implements OnInit {
 
     async login(){
       const datos = {
-        nombre: this.usuario,
+        nombre: this.nombre,
         pwd: this.pwd
       }
       

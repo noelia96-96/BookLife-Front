@@ -12,16 +12,16 @@
     <img src="../../../assets/login.jpg" alt="">
   </div>
   <form class="content-form">
-    <ion-item class="usuario">
+    <ion-item class="nombre">
       <ion-icon class="uss" name="person" style="margin-right: 15px;"></ion-icon>
-      <ion-input [(ngModel)]="usuario" name="usuario" type="text" placeholder="*Usuario" autofocus required></ion-input>
+      <ion-input [(ngModel)]="nombre" name="nombre" type="text" placeholder="*Nombre usuario" autofocus required></ion-input>
     </ion-item>
-    <ion-item class="contraseña">
+    <ion-item class="pwd">
       <ion-icon class="pass" name="lock-closed" style="margin-right: 15px;"></ion-icon>
       <ion-input [(ngModel)]="pwd" name="pwd" type="password" placeholder="*Contraseña" required></ion-input>
     </ion-item>
     <div class="login-button">
-      <ion-button class="log-button" (click)="login()" disabled="{{!this.usuario || !this.pwd }}" style="margin-top: 10px;" expand="block"  color="primary">Login</ion-button>
+      <ion-button class="log-button" (click)="login()" disabled="{{!this.nombre || !this.pwd }}" style="margin-top: 10px;" expand="block"  color="primary">Login</ion-button>
     </div>
   </form>
   
