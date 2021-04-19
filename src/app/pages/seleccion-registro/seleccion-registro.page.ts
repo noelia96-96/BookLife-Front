@@ -16,7 +16,6 @@ export class SeleccionRegistroPage implements OnInit {
   ngOnInit() {
   }
 
-  
   registroBibliofilo(){
     this._router.navigate(['/registro']);
   }
