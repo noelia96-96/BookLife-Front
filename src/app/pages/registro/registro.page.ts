@@ -14,7 +14,7 @@ export class RegistroPage implements OnInit {
   
   //Datos de registro de usuario bibliofilo
   
-  public usuario:string;
+  public nombre:string;
   public pwd:string;
   public email:string;
   public ciudad:string;
@@ -28,7 +28,7 @@ export class RegistroPage implements OnInit {
   async registrar($){
     let data = {
      
-      usuario: this.usuario,
+      nombre: this.nombre,
       pwd: this.pwd,
       email: this.email,
       ciudad: this.ciudad,
