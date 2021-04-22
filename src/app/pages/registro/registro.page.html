@@ -23,9 +23,8 @@
     </ion-item>
     <ion-item class="ciudad">
       <ion-icon class="city" name="business-outline"></ion-icon>
-        <ion-label name="city" required>*Ciudad</ion-label>
-        <ion-select  interface="popover">
-          <ion-select-option value="almeria">Almería</ion-select-option>
+        <ion-label  name="city" required readonly>*Ciudad</ion-label>
+        <ion-select (ionChange)="seleccionarCiudad($event)" interface="popover">
           <ion-select-option value="cadiz">Cádiz</ion-select-option>
           <ion-select-option value="cordoba">Córdoba</ion-select-option>
           <ion-select-option value="granada">Granada</ion-select-option>
@@ -37,17 +36,18 @@
       </ion-item>
       <ion-item class="sexo">
         <ion-icon class="sex" name="contrast-outline"></ion-icon>
-          <ion-label name="sexo" required>*Sexo</ion-label>
-          <ion-select  interface="popover">
+          <ion-label name="sexo" required readonly>*Sexo </ion-label>
+          <ion-select (ionChange)="seleccionarSexo($event)" interface="popover">
             <ion-select-option value="hombre">Hombre</ion-select-option>
             <ion-select-option value="mujer">Mujer</ion-select-option>
           </ion-select>
         </ion-item>
     <div class="register-button">
-      <ion-button class="registro-button" (click)="registrar()" disabled="{{!this.nombre || !this.pwd || !this.email}}" expand="block" color="primary">Registrar</ion-button>
+      <ion-button class="registro-button" (click)="registrar()"  expand="block" color="primary">Registrar</ion-button>
+      <!-- disabled="{{!this.nombre || !this.pwd || !this.email || !this.ciudad || !this.sexo}}" -->
     </div>
   </form>
   <div class="ilustration-registro">
-    <img src="../../../assets/registro-bibliofilo.jpg" alt="">
+    <img src="../../../assets/registro-bibliofilo.jpg" alt="Imagen de registro bibliofilo">
   </div>
 </body>

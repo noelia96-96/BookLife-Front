@@ -12,11 +12,15 @@ export class RegistroLibreriaPage implements OnInit {
 
   constructor(private _usuarioService:UsuarioService, private _router:Router) { }
   
-  //Datos de registro usuario
-  public edad:number;
-  public usuario:string;
-  public pwd:string;
+  //Datos de registro de usuario librero
+  
+  public nombre:string;
+  public ciudad:string;
+  public direccion:string;
+  public telefono:number;
+  public web:string;
   public email:string;
+  public pwd:string;
 
   ngOnInit() {
   }
@@ -25,23 +29,22 @@ export class RegistroLibreriaPage implements OnInit {
   //Luego llama al metodo y cuando termina lo muestra por pantalla respuesta post
   async registro($){
     let data = {
-      edad: this.edad,
-      email: this.email,
-      pwd: this.pwd,
-      nombre:this.usuario
+      nombre:this.nombre,
+      ciudad:this.ciudad,
+      direccion:this.direccion,
+      telefono:this.telefono,
+      web:this.web,
+      email:this.email,
+      pwd:this.pwd,
+     
     }
    
-    //Encriptar pwd
-    //var bcrypt = require('bcryptjs');
-    //var salt = bcrypt.genSaltSync(10);
-    //var hash = bcrypt.hashSync(data.pwd, salt);
-    //data.pwd = hash;
-    
     const resultado = await this._usuarioService.registro(data);
-    
     this._router.navigate(['/inicio']);
-
-
   }
-  
+
+  seleccionarCiudad(data){
+    this.ciudad = data.detail.value;
+  }
+
 }
