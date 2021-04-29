@@ -4,6 +4,7 @@ import { Evento } from 'src/app/interfaces/evento';
 import { ActivatedRoute} from '@angular/router';
 import { EventoService } from '../../services/evento.service';
 import { RootEvento } from '../../interfaces/evento';
+import { time } from 'node:console';
 
 @Component({
   selector: 'app-modal-demo',
@@ -15,11 +16,13 @@ export class ModalDemoPage implements OnInit {
   eventoObtenido: Evento;
   eventoObtenidoRoot: RootEvento;
 
-  nuevoEvento : Evento= 
+  nuevoEvento : Evento = 
     {
     nombreEvento : '',
     creador: '',
+    lugar: '',
     fecha : new Date(),
+    hora: new Date(),
     participantes: Array<String>()
   };
 

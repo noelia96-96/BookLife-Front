@@ -6,43 +6,39 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<body>
   <ion-list class="edit-content">
       <ion-item class="nombre">
-        <ion-label><b>Nombre: </b></ion-label>
-        <ion-input [(ngModel)]="eventoObtenido.nombreEvento"  type="text" name="evento" placeholder="Nombre"></ion-input>
+        <ion-label><b>Nombre evento: </b></ion-label>
+        <ion-input [(ngModel)]="eventoObtenido.nombreEvento"  type="text" name="evento"></ion-input>
       </ion-item>
 
-      <ion-item class="descripcion">
-        <ion-label><b>Descripción: </b></ion-label>
-        <ion-input type="text" name="descripcion" placeholder="Descripcion"></ion-input>
-      </ion-item>
     <ion-item class="lugar">
       <ion-label><b>Lugar: </b></ion-label>
-      <ion-input type="text" name="lugar" placeholder="Lugar"></ion-input>
+      <ion-input [(ngModel)]="eventoObtenido.lugar" type="text" name="lugar"></ion-input>
     </ion-item>
      <ion-item class="fecha">
       <ion-label><b>Fecha: </b></ion-label>
-      <ion-datetime [(ngModel)]="eventoObtenido.fecha" mmin="2021" max="2023" displayFormat="DD/MM/YYYY" pikerFormat="DD MM YYYY" placeholder="Fecha"></ion-datetime>
+      <ion-datetime [(ngModel)]="eventoObtenido.fecha" mmin="2021" max="2023" displayFormat="DD/MM/YYYY" pikerFormat="DD MM YYYY"></ion-datetime>
     </ion-item>
     <ion-item class="hora">
       <ion-label><b>Hora: </b></ion-label>
-      <ion-datetime displayFormat="HH:mm" placeholder="Hora"></ion-datetime>
+      <ion-datetime [(ngModel)]="eventoObtenido.hora" displayFormat="HH:mm"></ion-datetime>
     </ion-item>
   </ion-list>
   <div class="ilustration-event">
     <img src="../../../assets/event.jpg">
   </div>
-</ion-content>
+</body>
 
 <ion-footer class="bar-stable">
   <ion-toolbar color="light">
     <div style="text-align: center;">
-  <ion-button color="primary" style="margin-left:0%" >
+  <ion-button class="save-button" color="primary" style="margin-left:0%" >
     <ion-icon name="save-outline"></ion-icon>
     <ion-label (click)="guardar()" style="margin-left: 10px;">Guardar</ion-label>
   </ion-button>
-  <ion-button color="primary" style="margin-left:5%" (click)="cancelar()">
+  <ion-button class="cancel-button" color="primary" style="margin-left:5%" (click)="cancelar()">
     <ion-icon name="close"></ion-icon>
     <ion-label style="margin-left: 10px;">Cancelar</ion-label>
   </ion-button> 

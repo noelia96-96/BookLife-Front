@@ -11,12 +11,12 @@
 <form class="content-form">
     <ion-item class="libreria">
       <ion-icon class="book" name="book-outline"></ion-icon>
-      <ion-input name="book" type="text" placeholder="*Nombre de tu librería" autofocus required></ion-input>
+      <ion-input [(ngModel)]="nombre" name="nombre" type="text" placeholder="*Nombre de tu librería" autofocus required></ion-input>
     </ion-item> 
     <ion-item class="ciudad">
       <ion-icon class="city" name="business-outline"></ion-icon>
-        <ion-label name="city" required>*Ciudad</ion-label>
-        <ion-select  interface="popover">
+        <ion-label type="text" name="ciudad" required>*Ciudad</ion-label>
+        <ion-select (ionChange)="seleccionarCiudad($event)" interface="popover">
           <ion-select-option value="almeria">Almería</ion-select-option>
           <ion-select-option value="cadiz">Cádiz</ion-select-option>
           <ion-select-option value="cordoba">Córdoba</ion-select-option>
@@ -29,15 +29,15 @@
       </ion-item>
     <ion-item class="direccion">
       <ion-icon class="location" name="location-outline"></ion-icon>
-      <ion-input  name="location" type="text" placeholder="*Dirección" required></ion-input>
+      <ion-input  [(ngModel)]="direccion" name="direccion" type="text" placeholder="*Dirección" required></ion-input>
     </ion-item>
     <ion-item class="telefono">
       <ion-icon class="phone" name="call-outline"></ion-icon>
-      <ion-input [(ngModel)]="email" name="phone" type="number" placeholder="*Teléfono" required></ion-input>
+      <ion-input [(ngModel)]="telefono" name="telefono" type="number" placeholder="*Teléfono" required></ion-input>
     </ion-item>
     <ion-item class="pagina-web">
       <ion-icon class="web" name="glasses-outline"></ion-icon>
-      <ion-input [(ngModel)]="email" name="web" type="text" placeholder="Web"></ion-input>
+      <ion-input [(ngModel)]="web" name="web" type="text" placeholder="Web"></ion-input>
     </ion-item>
     <ion-item class="email">
       <ion-icon class="mail" name="mail-outline"></ion-icon>
@@ -48,10 +48,10 @@
       <ion-input [(ngModel)]="pwd" name="contraseña" type="password" placeholder="*Contraseña" required></ion-input>
     </ion-item>
     <div class="register-button">
-      <ion-button class="registro-button" (click)="registro()" disabled="{{!this.usuario || !this.pwd || !this.email}}" expand="block"  color="primary">Registrar</ion-button>
+      <ion-button class="registro-button" (click)="registro()" disabled="{{!this.nombre || !this.ciudad || !this.direccion || !this.telefono || !this.web || !this.email || !this.pwd}}" expand="block"  color="primary">Registrar</ion-button>
     </div>
   </form>
   <div class="ilustration-registro">
-    <img src="../../../assets/registro-libreria.png">
+    <img src="../../../assets/registro-libreria.png" alt="Imagen de registro librero">
   </div>
 </body>

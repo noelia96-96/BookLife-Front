@@ -1,5 +1,9 @@
+body {
+    overflow-y:hidden;
+    background-color: white;
+}
 .edit-content {
-    margin-top: 33px;
+    margin-top: 72px;
     margin-left: 12px;
 }
 .nombre, .descripcion, .lugar, .fecha, .hora {
@@ -12,7 +16,12 @@
     margin-bottom: 10px;
 }
 .ilustration-event {
-    width: 228px;
-    margin-top: 72px;
+    width: 215px;
+    margin-top: 151px;
     margin-left: 79px;
+}
+
+.save-button, .cancel-button {
+    width: 113px;
+    height: 34px;
 }

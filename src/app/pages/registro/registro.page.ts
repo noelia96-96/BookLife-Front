@@ -20,6 +20,8 @@ export class RegistroPage implements OnInit {
   public ciudad:string;
   public sexo:string;
 
+ 
+
   ngOnInit() {
   }
 
@@ -34,12 +36,20 @@ export class RegistroPage implements OnInit {
       ciudad: this.ciudad,
       sexo:this.sexo
     }
+
+    console.log(data);
     
     const resultado = await this._usuarioService.registro(data);
-    
     this._router.navigate(['/inicio']);
-
-
   }
+  
+  seleccionarCiudad(data){
+    this.ciudad = data.detail.value;
+  }
+
+  seleccionarSexo(data){
+    this.sexo = data.detail.value;
+  }
+
   
 }
