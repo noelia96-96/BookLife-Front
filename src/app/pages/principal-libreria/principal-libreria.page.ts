@@ -24,14 +24,8 @@ export class PrincipalLibreriaPage implements OnInit {
   //lista de eventos propios
   eventosPropios : Evento[]; 
 
-  //lista de eventos Ajenos
-  eventosAjenos : Evento[]; 
-
   //limite de eventos propios
   limitePropio : number = 3; 
-
-  //limite de eventos propios
-  limiteAjeno : number = 3; 
 
   constructor(
     private router: Router,
@@ -65,14 +59,6 @@ export class PrincipalLibreriaPage implements OnInit {
         await this._eventoService.getEventos(this.limitePropio);
         this.eventosPropios = this._eventoService.eventosPropios;
 
-      }else{
-
-        //limite de eventos Ajenos
-        this.limiteAjeno = this.limiteAjeno + 3;
-        //Cargar en la lista de eventos Ajenos
-        await this._eventoService.getEventosAjenos(this.limiteAjeno);
-        this.eventosAjenos = this._eventoService.eventosAjenos;
-
       }
 
       //completar la accion de cargar los eventos
@@ -81,8 +67,6 @@ export class PrincipalLibreriaPage implements OnInit {
 
   async loadEventosPropios(){
     this.booleanEventos = true;
-    //Quitar de la lista contraria los eventos 
-    this.eventosAjenos = []; 
     //limite de eventos propios
     this.limitePropio = 3;
     //llamar al servicio para llamar al back para recuperar los eventos
@@ -95,12 +79,6 @@ export class PrincipalLibreriaPage implements OnInit {
     this.booleanEventos = false;
     //Quitar de la lista contraria los eventos 
     this.eventosPropios = []; 
-    //limite de eventos Ajenos
-    this.limiteAjeno = 3;
-    //llamar al servicio para llamar al back para recuperar los eventos
-    await this._eventoService.getEventosAjenos(this.limiteAjeno);
-    //Carga del servicio la lista de los eventos
-    this.eventosAjenos = this._eventoService.eventosAjenos;
   }
 
   cerrarSesion(){
@@ -112,15 +90,13 @@ export class PrincipalLibreriaPage implements OnInit {
     
   }
   editarEvento(_id:String){
+    console.log(_id);
     this._eventoService.idEventoModificar = _id;
     this.router.navigate(['/modal-demo']);
   }
-  borrarEvento(){
-    
-  }
 
   //borrar evento
-  async borrar(evento : any){
+  async borrarEvento(evento : any){
     this._eventoService.eventoIdBorrar = evento;
     await this. _eventoService.borrar();
 
@@ -196,9 +172,6 @@ export class PrincipalLibreriaPage implements OnInit {
     await alert.present();
   }
 
-  verPerfil(){
-    
-  }
  
   geolocalizacion(latitud:string, longitud:string):void{
     /*this.inAppBrowser.create(`https://maps.google.com/maps?z=25&t=m&q=loc:${latitud},${longitud}`,'_blank',{ 
