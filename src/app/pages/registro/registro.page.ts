@@ -12,36 +12,44 @@ export class RegistroPage implements OnInit {
 
   constructor(private _usuarioService:UsuarioService, private _router:Router) { }
   
-  //Datos de registro usuario
-  public edad:number;
-  public usuario:string;
+  //Datos de registro de usuario bibliofilo
+  
+  public nombre:string;
   public pwd:string;
   public email:string;
+  public ciudad:string;
+  public sexo:string;
+
+ 
 
   ngOnInit() {
   }
 
-  //objeto data que coge los datos que estan en el formulario
-  //Luego llama al metodo y cuando termina lo muestra por pantalla respuesta post
-  async registro($){
+  //Objeto data que coge los datos que están en el formulario
+  //Luego llama al método y cuando termina lo muestra por pantalla - respuesta post
+  async registrar($){
     let data = {
-      edad: this.edad,
-      email: this.email,
+     
+      nombre: this.nombre,
       pwd: this.pwd,
-      nombre:this.usuario
+      email: this.email,
+      ciudad: this.ciudad,
+      sexo:this.sexo
     }
-   
-    //Encriptar pwd
-    //var bcrypt = require('bcryptjs');
-    //var salt = bcrypt.genSaltSync(10);
-    //var hash = bcrypt.hashSync(data.pwd, salt);
-    //data.pwd = hash;
+
+    console.log(data);
     
     const resultado = await this._usuarioService.registro(data);
-    
     this._router.navigate(['/inicio']);
-
-
   }
+  
+  seleccionarCiudad(data){
+    this.ciudad = data.detail.value;
+  }
+
+  seleccionarSexo(data){
+    this.sexo = data.detail.value;
+  }
+
   
 }

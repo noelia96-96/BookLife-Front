@@ -1,5 +1,5 @@
 import { Injectable} from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 import { RespuestaPost } from '../interfaces/RespuestaPost';
 import {Plugins} from '@capacitor/core';
@@ -15,7 +15,6 @@ public usuarioActual:any;
   constructor(private _http:HttpClient) { }
 
   //Metodo para llamar al servidor
-
   probandoGet(dato:any){
     return new Promise<any>(resolve =>{
       this._http.get(`${environment.urlUsuario}postDePrueba`,dato).subscribe(resp=>{

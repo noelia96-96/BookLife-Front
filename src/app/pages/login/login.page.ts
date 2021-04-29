@@ -39,9 +39,16 @@ export class LoginPage implements OnInit {
       }
       
       const respuesta:RespuestaPost = await this._usuarioService.login(datos);
+      console.log(respuesta.usuario.sexo);
       if(respuesta.status=='ok'){
         this._usuarioService.usuarioActual = datos;
-        this._router.navigate(['/perfil']);
+        if(respuesta.usuario.sexo){
+          this._router.navigate(['/perfil']);
+        }
+        else{
+          this._router.navigate(['/principal-libreria']);
+        }
+        
       }
       else{
         const alert = await this.alertController.create({

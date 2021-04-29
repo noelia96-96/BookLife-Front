@@ -111,7 +111,8 @@ export class EventoService {
 
 }
 buscarEvento(){
-
+console.log(this.idEventoModificar);
+console.log(this.eventosPropios);
   for(let data of this.eventosPropios){
     if(data._id == this.idEventoModificar){
       this.eventoModificar = data;
