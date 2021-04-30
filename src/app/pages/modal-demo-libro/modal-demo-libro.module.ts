@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ModalDemoPageRoutingModule } from './modal-demo-routing.module';
-import { ModalDemoPage } from './modal-demo.page';
+import { ModalDemoLibroPageRoutingModule } from './modal-demo-libro-routing.module';
+import { ModalDemoLibroPage } from './modal-demo-libro.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ModalDemoPageRoutingModule
+    ModalDemoLibroPageRoutingModule
   ],
-  declarations: [ModalDemoPage]
+  declarations: [ModalDemoLibroPage]
 })
-export class ModalDemoPageModule {}
+export class ModalDemoLibroPageModule {}

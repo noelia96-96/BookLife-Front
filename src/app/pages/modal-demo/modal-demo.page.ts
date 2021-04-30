@@ -4,7 +4,6 @@ import { Evento } from 'src/app/interfaces/evento';
 import { ActivatedRoute} from '@angular/router';
 import { EventoService } from '../../services/evento.service';
 import { RootEvento } from '../../interfaces/evento';
-import { time } from 'node:console';
 
 @Component({
   selector: 'app-modal-demo',
@@ -48,7 +47,7 @@ export class ModalDemoPage implements OnInit {
    
 
 cancelar(){
-    //Poner 'refresh' para que al guardar, el nuevo bar aparezca en la pantalla de inicio 
+    //Poner 'refresh' para que al guardar, el nuevo evento aparezca en la pantalla de inicio 
     this.router.navigate(['/principal-libreria']);//da error con el 'refresh'
   
     }

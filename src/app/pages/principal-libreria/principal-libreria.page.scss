@@ -1,4 +1,5 @@
-body {
+.content {
+    overflow-y:hidden;
     background-color: white;
 }
 .options {
@@ -26,8 +27,8 @@ body {
     height: 45px; 
     margin-top: -24px;
 }
-.button-event {
-    width: 140px;
+.button-event, .button-book {
+    width: 122px;
     height: 38px;
     margin-top: 14px;
     margin-bottom: 12px;
