@@ -65,14 +65,6 @@ export class PerfilLibreriaPage implements OnInit {
         await this._eventoService.getEventos(this.limitePropio);
         this.eventosPropios = this._eventoService.eventosPropios;
 
-      }else{
-
-        //limite de eventos Ajenos
-        this.limiteAjeno = this.limiteAjeno + 3;
-        //Cargar en la lista de eventos Ajenos
-        await this._eventoService.getEventosAjenos(this.limiteAjeno);
-        this.eventosAjenos = this._eventoService.eventosAjenos;
-
       }
 
       //completar la accion de cargar los eventos
@@ -95,12 +87,6 @@ export class PerfilLibreriaPage implements OnInit {
     this.booleanEventos = false;
     //Quitar de la lista contraria los eventos 
     this.eventosPropios = []; 
-    //limite de eventos Ajenos
-    this.limiteAjeno = 3;
-    //llamar al servicio para llamar al back para recuperar los eventos
-    await this._eventoService.getEventosAjenos(this.limiteAjeno);
-    //Carga del servicio la lista de los eventos
-    this.eventosAjenos = this._eventoService.eventosAjenos;
   }
 
   cerrarSesion(){
