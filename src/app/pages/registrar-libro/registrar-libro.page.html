@@ -1,0 +1,45 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      Registrar Libro
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<body>
+  <ion-list class="register-content">
+    <ion-item class="creador">
+      <ion-label  type="text" name="creador">{{this.usuario}}</ion-label>
+    </ion-item>
+    <ion-item class="nombreLibro">
+      <ion-input  [(ngModel)]="nombreLibro"  type="text" name="nombreLibro" placeholder="*Nombre del libro" autofocus required></ion-input>
+    </ion-item>
+    <ion-item class="genero">
+      <ion-input  [(ngModel)]="genero"  type="text" name="genero" placeholder="*Género" autofocus required></ion-input>
+    </ion-item>
+    <ion-item class="autor">
+      <ion-input  [(ngModel)]="autor"  type="text" name="autor" placeholder="*Autor" autofocus required></ion-input>
+    </ion-item>
+    <ion-item class="precio">
+      <ion-input  [(ngModel)]="precio"  type="text" name="precio" placeholder="*Precio" autofocus required></ion-input>
+    </ion-item>
+  </ion-list>
+  <div class="registration-book">
+    <img src="../../../assets/publicar-libro.jpg">
+  </div>
+</body>
+
+<ion-footer class="bar-stable">
+  <ion-toolbar color="light">
+    <div style="text-align: center;">
+  <ion-button (click)="guardar()" class="save-button" disabled="{{!this.nombreLibro || !this.genero || !this.autor || !this.precio}}" color="secondary" style="margin-left:0%" >
+    <ion-icon name="save-outline"></ion-icon>
+    <ion-label style="margin-left: 10px;">Guardar</ion-label>
+  </ion-button>
+  <ion-button (click)="cancelar()" class="cancel-button" color="secondary" style="margin-left:5%" >
+    <ion-icon name="close"></ion-icon>
+    <ion-label style="margin-left: 10px;">Cancelar</ion-label>
+  </ion-button> 
+</div>
+</ion-toolbar>
+</ion-footer>

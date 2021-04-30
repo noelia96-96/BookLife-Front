@@ -39,7 +39,6 @@ export class LoginPage implements OnInit {
       }
       
       const respuesta:RespuestaPost = await this._usuarioService.login(datos);
-      console.log(respuesta.usuario.sexo);
       if(respuesta.status=='ok'){
         this._usuarioService.usuarioActual = datos;
         if(respuesta.usuario.sexo){

@@ -59,6 +59,18 @@ const routes: Routes = [
   {
     path: 'principal-libreria',
     loadChildren: () => import('./pages/principal-libreria/principal-libreria.module').then( m => m.PrincipalLibreriaPageModule)
+  },
+  {
+    path: 'registrar-libro',
+    loadChildren: () => import('./pages/registrar-libro/registrar-libro.module').then( m => m.RegistrarLibroPageModule)
+  },
+  {
+    path: 'modal-demo-libro',
+    loadChildren: () => import('./pages/modal-demo-libro/modal-demo-libro.module').then( m => m.ModalDemoLibroPageModule)
+  },
+  {
+    path: 'modal-demo-libro/:_id',
+    loadChildren: () => import('./pages/modal-demo-libro/modal-demo-libro.module').then( m => m.ModalDemoLibroPageModule)
   }
 ];
 
