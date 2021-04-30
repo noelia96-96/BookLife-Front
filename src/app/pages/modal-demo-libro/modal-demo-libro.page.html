@@ -1,33 +1,33 @@
 <ion-header class="ion-no-border">
   <ion-toolbar>
     <ion-title style="text-align: center;">
-      Editar Evento
+      Editar libro
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <body>
   <ion-list class="edit-content">
-      <ion-item class="nombre">
-        <ion-label><b>Nombre del evento: </b></ion-label>
-        <ion-input [(ngModel)]="eventoObtenido.nombreEvento"  type="text" name="evento"></ion-input>
+      <ion-item class="nombreLibro">
+        <ion-label><b>Nombre del libro: </b></ion-label>
+        <ion-input [(ngModel)]="libroObtenido.nombreLibro"  type="text" name="nombreLibro"></ion-input>
       </ion-item>
 
-    <ion-item class="lugar">
-      <ion-label><b>Lugar: </b></ion-label>
-      <ion-input [(ngModel)]="eventoObtenido.lugar" type="text" name="lugar"></ion-input>
+    <ion-item class="genero">
+      <ion-label><b>Género: </b></ion-label>
+      <ion-input [(ngModel)]="libroObtenido.genero" type="text" name="genero"></ion-input>
     </ion-item>
-     <ion-item class="fecha">
-      <ion-label><b>Fecha: </b></ion-label>
-      <ion-datetime [(ngModel)]="eventoObtenido.fecha" mmin="2021" max="2023" displayFormat="DD/MM/YYYY" pikerFormat="DD MM YYYY"></ion-datetime>
+     <ion-item class="autor">
+      <ion-label><b>Autor: </b></ion-label>
+      <ion-input [(ngModel)]="libroObtenido.autor"></ion-input>
     </ion-item>
-    <ion-item class="hora">
-      <ion-label><b>Hora: </b></ion-label>
-      <ion-datetime [(ngModel)]="eventoObtenido.hora" displayFormat="HH:mm"></ion-datetime>
+    <ion-item class="precio">
+      <ion-label><b>Precio: </b></ion-label>
+      <ion-input [(ngModel)]="libroObtenido.precio" ></ion-input>
     </ion-item>
   </ion-list>
-  <div class="ilustration-event">
-    <img src="../../../assets/event.jpg">
+  <div class="ilustration-book">
+    <img src="../../../assets/editar-libro.jpg">
   </div>
 </body>
 

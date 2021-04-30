@@ -1,0 +1,26 @@
+body {
+    overflow-y:hidden;
+    background-color: white;
+}
+.register-content {
+    margin-top: 72px;
+    margin-left: 12px;
+}
+.creador,.nombreLibro, .genero, .autor, .precio {
+    border: 1px solid #3880ff;
+    border-radius: 30px;
+    height: 43px;
+    width: 291px;
+    font-size: 15px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+.registration-book {
+    width: 228px;
+    margin-top: 103px;
+    margin-left: 79px;
+}
+.save-button, .cancel-button {
+    width: 113px;
+    height: 34px;
+}

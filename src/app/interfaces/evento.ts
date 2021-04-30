@@ -1,10 +1,9 @@
-import { Time } from '@angular/common';
 export interface Evento {
     _id?: any;
     nombreEvento: String;
-    creador: string;
+    creador: String;
     fecha: Date;
-    lugar: string;
+    lugar: String;
     hora: Date;
     participantes: String[];
     //imagen: string
