@@ -19,7 +19,7 @@ export class EventoService {
       public eventoBorrar : Evento;
       public eventoIdBorrar : String;
       public eventosPropios : Evento[];
-      public eventosAjenos : Evento[];
+      //public eventosAjenos : Evento[];
 
       registrarEvento(dato:any){
       return new Promise<any>((resolve, reject)=>{
@@ -40,19 +40,6 @@ export class EventoService {
       return new Promise<RootEvento>(resolve=>{
         this._http.post<RootEvento>(`${environment.urlEvento}mostrarEvento`,datos).subscribe(resp=>{
           this.eventosPropios=resp.evento[0];
-      resolve(resp);
-     });
-   });
- }
-
-     //Traer los eventosAjenos de la bbdd
-     async getEventosAjenos(limit:number){
-      let datos = {
-        limite: limit,
-      }
-      return new Promise<RootEvento>(resolve=>{
-        this._http.post<RootEvento>(`${environment.urlEvento}mostrarEventoAjenos`,datos).subscribe(resp=>{
-          this.eventosAjenos=resp.evento[0];
       resolve(resp);
      });
    });
@@ -135,7 +122,6 @@ guardarDatosEditados(){
     });
   });
 
-
 }
 
 getToken(){
@@ -144,7 +130,7 @@ getToken(){
    resolve(data);
   });
   
-  });
+});
 }
 
 }
