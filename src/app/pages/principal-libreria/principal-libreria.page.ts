@@ -85,10 +85,16 @@ export class PrincipalLibreriaPage implements OnInit {
 
   async loadEventosPropios(){
     this.booleanEventos = true;
+    
+    //Quitar de la lista contraria los libros 
+    this.librosPropios = []; 
+    
     //limite de eventos propios
     this.limitePropio = 3;
+    
     //llamar al servicio para llamar al back para recuperar los eventos
     await this._eventoService.getEventos(this.limitePropio);
+    
     //Carga del servicio la lista de los eventos
     this.eventosPropios = this._eventoService.eventosPropios;
   }
