@@ -9,22 +9,22 @@
 
 <body class="global-content">
 <form class="content-form">
-    <ion-item class="libreria">
+    <ion-item class="nombre-libreria">
       <ion-icon class="book" name="book-outline"></ion-icon>
       <ion-input [(ngModel)]="nombre" name="nombre" type="text" placeholder="*Nombre de tu librería" autofocus required></ion-input>
     </ion-item> 
     <ion-item class="ciudad">
       <ion-icon class="city" name="business-outline"></ion-icon>
-        <ion-label type="text" name="ciudad" required>*Ciudad</ion-label>
+        <ion-label [(ngModel)]="ciudad" type="text" name="ciudad" required ngDefaultControl>*Ciudad</ion-label>
         <ion-select (ionChange)="seleccionarCiudad($event)" interface="popover">
-          <ion-select-option value="almeria">Almería</ion-select-option>
-          <ion-select-option value="cadiz">Cádiz</ion-select-option>
-          <ion-select-option value="cordoba">Córdoba</ion-select-option>
-          <ion-select-option value="granada">Granada</ion-select-option>
-          <ion-select-option value="huelva">Huelva</ion-select-option>
-          <ion-select-option value="jaen">Jaén</ion-select-option>
-          <ion-select-option value="malaga">Málaga</ion-select-option>
-          <ion-select-option value="sevilla">Sevilla</ion-select-option>
+          <ion-select-option value="Almería">Almería</ion-select-option>
+          <ion-select-option value="Cádiz">Cádiz</ion-select-option>
+          <ion-select-option value="Córdoba">Córdoba</ion-select-option>
+          <ion-select-option value="Granada">Granada</ion-select-option>
+          <ion-select-option value="Huelva">Huelva</ion-select-option>
+          <ion-select-option value="Jaén">Jaén</ion-select-option>
+          <ion-select-option value="Málaga">Málaga</ion-select-option>
+          <ion-select-option value="Sevilla">Sevilla</ion-select-option>
         </ion-select>
       </ion-item>
     <ion-item class="direccion">
@@ -48,7 +48,7 @@
       <ion-input [(ngModel)]="pwd" name="contraseña" type="password" placeholder="*Contraseña" required></ion-input>
     </ion-item>
     <div class="register-button">
-      <ion-button class="registro-button" (click)="registro()" disabled="{{!this.nombre || !this.ciudad || !this.direccion || !this.telefono || !this.web || !this.email || !this.pwd}}" expand="block"  color="primary">Registrar</ion-button>
+      <ion-button class="registro-button" (click)="registroLibreria()" disabled="{{!this.nombre || !this.ciudad || !this.direccion || !this.telefono || !this.web || !this.email || !this.pwd}}" expand="block"  color="primary">Registrar</ion-button>
     </div>
   </form>
   <div class="ilustration-registro">

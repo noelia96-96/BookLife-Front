@@ -1,0 +1,59 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title style="text-align: center;">
+      Datos personales
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<body>
+  <ion-list class="edit-content">
+    <ion-item class="nombre-bibliofilo">
+      <ion-label><b>Nombre: </b></ion-label> 
+      <ion-input  [(ngModel)]="nuevoUsuario.nombre" type="text" name="nombre"></ion-input>
+    </ion-item>
+    <ion-item class="contraseña">
+      <ion-label><b>Contraseña: </b></ion-label>
+      <ion-input [(ngModel)]="nuevoUsuario.pwd" type="text" name="contraseña"></ion-input>
+    </ion-item>
+    <ion-item class="email">
+      <ion-label><b>Email: </b></ion-label>
+      <ion-input [(ngModel)]="nuevoUsuario.email"></ion-input>
+    </ion-item>
+    <ion-item class="ciudad">
+        <ion-label [(ngModel)]="nuevoUsuario.ciudad" type="text" name="ciudad" required ngDefaultControl><b>Ciudad: </b></ion-label>
+      <ion-select value="{{myDefaultCiudad}}" (ionChange)="seleccionarCiudad($event)" interface="popover" #miCiudad> 
+          <ion-select-option value="Almería">Almería</ion-select-option>
+          <ion-select-option value="Cádiz">Cádiz</ion-select-option>
+          <ion-select-option value="Córdoba">Córdoba</ion-select-option>
+          <ion-select-option value="Granada">Granada</ion-select-option>
+          <ion-select-option value="Huelva">Huelva</ion-select-option>
+          <ion-select-option value="Jaén">Jaén</ion-select-option>
+          <ion-select-option value="Málaga">Málaga</ion-select-option>
+          <ion-select-option value="Sevilla">Sevilla</ion-select-option>
+      </ion-select>
+    </ion-item>
+   <ion-item class="sexo">
+      <ion-label [(ngModel)]="nuevoUsuario.sexo" type="text" name="sexo" required ngDefaultControl><b>Sexo: </b></ion-label>
+        <ion-select value="{{myDefaultSexo}}" (ionChange)="seleccionarSexo($event)" interface="popover" #miSexo>
+          <ion-select-option value="Hombre">Hombre</ion-select-option>
+          <ion-select-option value="Mujer">Mujer</ion-select-option>
+        </ion-select>
+      </ion-item>
+  </ion-list>
+</body>
+
+<ion-footer class="bar-stable">
+  <ion-toolbar color="light">
+    <div style="text-align: center;">
+  <ion-button class="save-button" color="primary" style="margin-left:0%" >
+    <ion-icon name="save-outline"></ion-icon>
+    <ion-label (click)="guardarDatosEditadosBibliofilo()" style="margin-left: 10px;">Guardar</ion-label>
+  </ion-button> 
+  <ion-button class="cancel-button" color="primary" style="margin-left:5%" (click)="cancelar()">
+    <ion-icon name="close"></ion-icon>
+    <ion-label style="margin-left: 10px;">Cancelar</ion-label>
+  </ion-button> 
+</div>
+</ion-toolbar>
+</ion-footer>

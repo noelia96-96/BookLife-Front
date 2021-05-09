@@ -3,16 +3,21 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 import { RespuestaPost } from '../interfaces/RespuestaPost';
 import {Plugins} from '@capacitor/core';
+import { RootUsuarios } from '../interfaces/usuarios';
+import { usuarios } from 'src/app/interfaces/usuarios';
+
 const {Storage} = Plugins;
 @Injectable({
   providedIn: 'root'
 })
 
 export class UsuarioService {
+constructor(private _http:HttpClient) { }
 public usuarioActual:any;
-
-  guardar: any;
-  constructor(private _http:HttpClient) { }
+public guardar: any;
+public usuario : usuarios[];
+public idUsuarioModificar : String;
+public usuarioModificar : usuarios;
 
   //Metodo para llamar al servidor
   probandoGet(dato:any){
@@ -30,6 +35,16 @@ public usuarioActual:any;
       });
     });
   }
+
+   registroLibreria(dato:any){
+     console.log(dato)
+    return new Promise<any>((resolve, reject)=>{
+      this._http.post(`${environment.urlUsuario}registro-libreria`,dato).subscribe((resp:RespuestaPost)=>{
+          resolve(resp);
+      });
+    });
+  }
+
   login(dato:any){
     return new Promise<any>(resolve=>{
       this._http.post(`${environment.urlUsuario}login`,dato).subscribe((resp:RespuestaPost)=>{
@@ -51,7 +66,6 @@ public usuarioActual:any;
     
     });
   }
-
   async compruebaSiLogado(){
     return new Promise(async resolve=>{
     
@@ -78,6 +92,59 @@ public usuarioActual:any;
   cerrarSesion() {
     Storage.clear();
   }
+
+  buscarUsuario(){
+  for(let data of this.usuario){
+    if(data._id == this.idUsuarioModificar){
+      this.usuarioModificar = data;
+    }
+  }
+ return this.usuarioModificar;
+}
+
+ //Traer los usuarios de la bbdd
+  mostrarUsuario(){
+      return new Promise<RootUsuarios>(resolve=>{
+        this._http.get<RootUsuarios>(`${environment.urlUsuario}mostrarUsuario`).subscribe(resp=>{
+          this.usuario=resp.usuario;
+          console.log(this.usuario)
+      resolve(resp);
+     });
+   });
+ }
+
+//Guardar datos personales editados de la libreria
+guardarDatosEditadosLibreria(){ 
+  console.log(this.usuario[0][0]);
+  return new Promise<any>(resolve=>{
+    this._http.post(`${environment.urlUsuario}guardar-datos-editados-libreria`,this.usuario[0][0]).subscribe((resp:any)=>{
+      if(resp.status=='ok' && resp.token){
+        Storage.set({
+          key:'token',
+          value:resp.token
+        });
+      }
+        resolve(resp);
+    });
+  });
+}
+
+//Guardar datos personales editados del bibliofilo
+guardarDatosEditadosBibliofilo(){ 
+  console.log(this.usuario[0][0]);
+  return new Promise<any>(resolve=>{
+    this._http.post(`${environment.urlUsuario}guardar-datos-editados-bibliofilo`,this.usuario[0][0]).subscribe((resp:any)=>{
+      if(resp.status=='ok' && resp.token){
+        Storage.set({
+          key:'token',
+          value:resp.token
+        });
+      }
+        resolve(resp);
+    });
+  });
+
+}
 }
 
 

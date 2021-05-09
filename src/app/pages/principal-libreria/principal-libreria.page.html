@@ -1,4 +1,3 @@
-
   <ion-toolbar class="toolbar-color">
     <ion-avatar [routerLink]="'/perfil-libreria'" class="avatar-profile">
       <img src="../../../assets/profile-l.jpg">
@@ -9,12 +8,8 @@
 <div class="options">
     <ion-toolbar >
       <ion-segment>
-        <ion-segment-button (click)="loadEventosPropios()" value="propio">
-         Eventos
-        </ion-segment-button>
-        <ion-segment-button (click)="loadLibrosPropios()" value="ajeno">
-          Libros
-        </ion-segment-button>
+        <ion-segment-button (click)="loadEventosPropios()" value="propio">Eventos</ion-segment-button>
+        <ion-segment-button (click)="loadLibrosPropios()" value="ajeno">Libros</ion-segment-button>
       </ion-segment>
     </ion-toolbar>
     
@@ -63,7 +58,7 @@
   <ion-footer class="bar-stable">
     <ion-toolbar class="tool-foot" color="light">
       <div class="content-button-event">
-          <ion-button class="button-event" (click)="crearEvento()" fill="solid" slot="end" color="tertiary">Crear evento
+          <ion-button class="button-event" (click)="crearEvento()" fill="solid" slot="end" color="success">Crear evento
           </ion-button>
           <ion-button class="button-book" (click)="publicarLibro()" fill="solid" slot="end" color="medium">Publicar libro
           </ion-button>
