@@ -127,9 +127,9 @@ getToken(){
     Storage.get({key:'token'}).then(data=>{
    resolve(data);
   });
-  
 });
-}
+
+  }
 
 }
 

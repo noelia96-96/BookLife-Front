@@ -68,7 +68,13 @@ compartir(){
 librerias() {
 
 }
+libreros() {
 
+}
+
+eventos() {
+
+}
 favoritos() {
   
 }
