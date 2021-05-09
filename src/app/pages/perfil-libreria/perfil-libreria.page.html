@@ -1,78 +1,22 @@
-<!-- <ion-header class="ion-no-border">
-  <ion-toolbar class="toolbar-color">
-    <ion-title>
-    Perfil
-    </ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <body class="background">
-    <div class="ilustration-perfil-libreria">
-      <img class="b-pro" src="../../../assets/profile-back3.png" alt="">
+    <div (click)="volver()" [mode]="'md'" color="none" no-shadow>
+      <ion-icon class="volver" name="arrow-back-outline"></ion-icon>
     </div>
-    <ion-buttons class="back-button" slot="start">
-      <ion-back-button [defaultHref]="'/principal-libreria'" [mode]="'md'"></ion-back-button>
-    </ion-buttons>
-    <div class="login">
-          <div class="profile-screen">
-              <div class="app-title">
-                  <h3 class="title-text">Cuenta cuentos</h3>
-              </div>
-        <ion-item lines="none">
-          <ion-label class="nombre-libreria">Nombre de librería</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-label>Cuenta cuentos</ion-label>
-        </ion-item> 
-        <ion-item lines="none">
-          <ion-label class="contraseña">Contraseña</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-input  type="password">111</ion-input> 
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label class="email">Email</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-input for="email">cuenta.cuentos@gmail.com</ion-input>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label class="ciudad">Web</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-input for="ciudad">www.cuentacuentos.es</ion-input>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label class="telefono">Teléfono</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-input for="password">954060799</ion-input>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label class="direccion">Dirección</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-input for="direccion">Calle Pio XII</ion-input>
-        </ion-item>
-        <ion-item lines="none">
-          <ion-label class="ciudad">Ciudad</ion-label>
-        </ion-item>
-        <ion-item>
-          <ion-input for="ciudad">Cádiz</ion-input>
-        </ion-item>
-        <ion-item>
-          <ion-button class="exit-button" (click)="cerrarSesion()" [routerLink]="'/inicio'" color="success">
-            <span>Cerrar sesión</span>
-          </ion-button>
-          <ion-button class="guardar-button" (click)="guardar()" [routerLink]="'/principal-libreria'" color="tertiary">
-            <span>Guardar</span>
-          </ion-button>
-        </ion-item>
+    <div class="perfil-libreria">
+        <div class="profile-screen">
+          <div class="app-title">
+            <h3 class="title-text">{{this.usuario}}</h3>
+          </div>
+      <ion-button class="personal-data-button" (click)="datosPersonales()" expand="block" color="success">
+          <span>Datos personales</span>
+      </ion-button>
+      <ion-button class="exit-button" (click)="cerrarSesion()" expand="block"color="medium">
+          <span>Cerrar sesión</span>
+      </ion-button>
     </div>
   </div>
     <div class="avatar-content">
-      <img  class= "image-profile" [routerLink]="'/perfil-bibliofilo'"  src="../../../assets/profile-l.jpg">
-      <!-- IMAGEN PERFIL DE HOMBRE - <img  class= "image-profile" [routerLink]="'/perfil-bibliofilo'"  src="../../../assets/profile-m.png"> -->
+      <img  class= "image-profile" [routerLink]="'/perfil-libreria'"  src="../../../assets/profile-l.jpg">
     </div>
 </body>
   
