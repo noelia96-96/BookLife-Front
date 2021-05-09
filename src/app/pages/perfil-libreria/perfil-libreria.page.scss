@@ -1,14 +1,17 @@
-body {
-    background-color: white;
+body.background{
+    background-image: url('../../../assets/profile-back3.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
     overflow-y: scroll;
-}
+} 
 .back-button {
     position: absolute;
     top: 0;
 }
 .avatar-content {
-    bottom: 231px;
-    position: relative;
+    top: 144px;
+    position: absolute;
     width: 100px;
     height: 100px;
     left: 141px;
@@ -18,25 +21,12 @@ body {
     border-radius: 47px;
     background-color: #d1f1ff;
 }
-.ilustracion-perfil-libreria {
-    margin-top: 11px;
-    width: 464px;
-    position: relative;
-    right: 44px; 
-}
-.b-pro {
-    border-bottom-left-radius: 22px;
-    border-bottom-right-radius: 22px;
-    border-top-left-radius: none;
-    border-top-right-radius: none;
-   
-}
 .title-text {
     font-family: system-ui;
     margin-top: 27px;
     color: #269251;
 }
-.login {
+.perfil-libreria {
     position: absolute;
     top: 116px;
     width: 300px;
@@ -52,55 +42,25 @@ body {
     margin-right: auto;
     width: 314px;
     position: relative;
-    bottom: 28px;
+    top: 94px;
     left: 33px;
-}
-.nombre-libreria, .contraseña, .email, .telefono, .direccion, .ciudad, .web {
-    font-weight: bold;
 }
 .app-title {
     text-align: center;
     color: #777;
 }
-
-.login-form {
-    text-align: center;
-}
-.control-group {
-    margin-bottom: 10px;
-}
-input {
-    text-align: center;
-    background-color: #ECF0F1;
-    border: 2px solid transparent;
-    border-radius: 3px;
-    font-size: 16px;
-    font-weight: 200;
-    padding: 10px 0;
-    width: 250px;
-    transition: border .5s;
-}
-input:focus {
-    border: 2px solid #3498DB;
-    box-shadow: none;
-}
-.apartado-ciudad {
-    font-weight: bold;
-}
-.exit-button, .guardar-button {
+.exit-button, .personal-data-button {
     display: inline-block;
     position: relative;
-    left: 11px;
-    width: 110px;
+    left: 5px;
+    width: 129px;
     height: 39px;
     font-size: 15px;
     margin-top: 25px;
     bottom: 9px;
-    --ion-color-success-tint: #42d77d;
 }
-.exit-button {
-    --ion-color-success-tint: #42d77d;
-}
-.guardar-button {
-    --ion-color-tertiary-shade: #4854e0	;
+.volver {
+    font-size: 23px;
+    margin-top: 12px;
+    margin-left: 18px;
 }

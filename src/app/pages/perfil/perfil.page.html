@@ -1,27 +1,29 @@
-<ion-header class="ion-no-border">
   <ion-toolbar class="toolbar-color">
-    <ion-title>
-    Librerías
-    </ion-title>
     <ion-avatar [routerLink]="'/perfil-bibliofilo'" class="avatar-profile">
       <img src="../../../assets/profile-w.png">
       <!-- <img src="../../../assets/profile-m.png"> -->
     </ion-avatar>
   </ion-toolbar>
-</ion-header>
 
 <ion-content>
   <div class="ion-padding">
     <ion-toolbar>
       <ion-segment>
-        <ion-segment-button (click)="librerias()" value="propio">
-         Librerías
-        </ion-segment-button>
-        <ion-segment-button (click)="favoritos()" value="ajeno">
-          Favoritos
-        </ion-segment-button>
+        <ion-segment-button (click)="librerias()" value="a">Librerías</ion-segment-button>
+        <ion-segment-button (click)="libros()" value="b">Libros</ion-segment-button>
+        <ion-segment-button (click)="eventos()" value="c">Eventos</ion-segment-button>
+        <ion-segment-button (click)="favoritos()" value="d">Favoritos</ion-segment-button>
       </ion-segment>
     </ion-toolbar>
+
+    <!-- CAMBIAR COSAS AQUI -->
+
+    <!-- OPCIONES: 
+    Librerias 
+    Eventos
+    Librerias favoritas
+    Libros -->
+
     <ion-card>
       <img src="../../../assets/eventoa.jpg">
       <ion-card-header color="light" style="height: 45px;">
@@ -43,7 +45,7 @@
           <ion-icon name="share-outline"></ion-icon>
         </ion-button>
       </ion-item>
-    </ion-card> <!-- el metodo esta icompleto -  ver QRBar -->
+    </ion-card> 
   </div>
 
   <ion-infinite-scroll threshold="200px">

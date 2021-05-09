@@ -20,8 +20,6 @@ export class RegistroPage implements OnInit {
   public ciudad:string;
   public sexo:string;
 
- 
-
   ngOnInit() {
   }
 

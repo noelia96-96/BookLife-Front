@@ -1,0 +1,21 @@
+body {
+    overflow-y:hidden;
+    background-color: white;
+}
+.edit-content {
+    margin-top: 72px;
+    margin-left: 12px;
+}
+.nombre-libreria, .contraseña, .email, .web, .telefono, .direccion, .ciudad {
+    border: 1px solid #28ba62;;
+    border-radius: 30px;
+    height: 43px;
+    width: 291px;
+    font-size: 15px;
+    margin-left: 30px;
+    margin-bottom: 10px;
+}
+.save-button, .cancel-button {
+    width: 113px;
+    height: 34px;
+}

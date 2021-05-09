@@ -13,7 +13,6 @@ export class RegistroLibreriaPage implements OnInit {
   constructor(private _usuarioService:UsuarioService, private _router:Router) { }
   
   //Datos de registro de usuario librero
-  
   public nombre:string;
   public ciudad:string;
   public direccion:string;
@@ -27,7 +26,7 @@ export class RegistroLibreriaPage implements OnInit {
 
   //objeto data que coge los datos que estan en el formulario
   //Luego llama al metodo y cuando termina lo muestra por pantalla respuesta post
-  async registro($){
+  async registroLibreria($){
     let data = {
       nombre:this.nombre,
       ciudad:this.ciudad,
@@ -35,11 +34,11 @@ export class RegistroLibreriaPage implements OnInit {
       telefono:this.telefono,
       web:this.web,
       email:this.email,
-      pwd:this.pwd,
-     
+      pwd:this.pwd, 
     }
+    console.log(data)
    
-    const resultado = await this._usuarioService.registro(data);
+    const resultado = await this._usuarioService.registroLibreria(data);
     this._router.navigate(['/inicio']);
   }
 

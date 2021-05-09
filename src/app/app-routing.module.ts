@@ -71,7 +71,15 @@ const routes: Routes = [
   {
     path: 'modal-demo-libro/:_id',
     loadChildren: () => import('./pages/modal-demo-libro/modal-demo-libro.module').then( m => m.ModalDemoLibroPageModule)
-  }
+  },
+  {
+    path: 'datos-personales-librero',
+    loadChildren: () => import('./pages/datos-personales-librero/datos-personales-librero.module').then( m => m.DatosPersonalesLibreroPageModule)
+  },
+   {
+    path: 'datos-personales-bibliofilo',
+    loadChildren: () => import('./pages/datos-personales-bibliofilo/datos-personales-bibliofilo.module').then( m => m. DatosPersonalesBibliofiloPageModule)
+  },
 ];
 
 @NgModule({

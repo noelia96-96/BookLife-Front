@@ -72,6 +72,7 @@ export class PrincipalLibreriaPage implements OnInit {
 
         //limite de libros propios
         this.limiteLibrosPropio = this.limiteLibrosPropio + 3;
+        
         //Cargar en la lista de libros propios
         await this._libroService.getLibros(this.limiteLibrosPropio);
         this.librosPropios = this._libroService.librosPropios;
