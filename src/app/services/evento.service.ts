@@ -2,7 +2,7 @@ import { Injectable} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../environments/environment.prod';
 import { RespuestaPost } from '../interfaces/RespuestaPost';
-import {Plugins} from '@capacitor/core';
+import { Plugins } from '@capacitor/core';
 import { RootEvento } from '../interfaces/evento';
 import { Evento } from 'src/app/interfaces/evento';
 
@@ -43,6 +43,22 @@ export class EventoService {
       resolve(resp);
      });
    });
+ }
+
+ //Traer los eventos de la bbdd por el bibliofilo     
+ getEventosPorBibliofilo(limit:number){
+   let datos = {
+        limite: limit,
+      }
+      return new Promise<RootEvento>(resolve=>{
+        this._http.post<RootEvento>(`${environment.urlEvento}mostrarEventoABibliofilo`,datos).subscribe(resp=>{
+          this.eventosPropios=resp.evento[0];
+          console.log(resp);
+          console.log(this.eventosPropios);
+      resolve(resp);
+     });
+   });
+
  }
 
  borrar(){
@@ -127,9 +143,9 @@ getToken(){
     Storage.get({key:'token'}).then(data=>{
    resolve(data);
   });
-  
 });
-}
+
+  }
 
 }
 

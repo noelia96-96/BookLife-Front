@@ -19,7 +19,8 @@ export class ModalDemoPage implements OnInit {
     {
     nombreEvento : '',
     creador: '',
-    lugar: '',
+    direccion: '',
+    ciudad: '',
     fecha : new Date(),
     hora: new Date(),
     participantes: Array<String>()

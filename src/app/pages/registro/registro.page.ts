@@ -20,8 +20,6 @@ export class RegistroPage implements OnInit {
   public ciudad:string;
   public sexo:string;
 
- 
-
   ngOnInit() {
   }
 
@@ -34,7 +32,8 @@ export class RegistroPage implements OnInit {
       pwd: this.pwd,
       email: this.email,
       ciudad: this.ciudad,
-      sexo:this.sexo
+      sexo:this.sexo,
+      favoritos: Array<String>()
     }
 
     console.log(data);

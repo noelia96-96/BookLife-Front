@@ -6,8 +6,8 @@ body {
     margin-top: 72px;
     margin-left: 12px;
 }
-.nombre, .ciudad, .direccion,.fecha, .hora {
-    border: 1px solid #3880ff;
+.nombre-libreria, .contraseña, .email, .web, .telefono, .direccion, .ciudad {
+    border: 1px solid #28ba62;;
     border-radius: 30px;
     height: 43px;
     width: 291px;
@@ -15,12 +15,6 @@ body {
     margin-left: 30px;
     margin-bottom: 10px;
 }
-.ilustration-event {
-    width: 215px;
-    margin-top: 99px;
-    margin-left: 79px;
-}
-
 .save-button, .cancel-button {
     width: 113px;
     height: 34px;

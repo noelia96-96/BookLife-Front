@@ -18,7 +18,6 @@ export class PrincipalLibreriaPage implements OnInit {
 
   public usuario:String;
   public _id:String;
-  public participantes: String[]; 
 
   //Para saber en que eventos estamos
   booleanEventos : boolean = true;
@@ -64,6 +63,7 @@ export class PrincipalLibreriaPage implements OnInit {
 
         //limite de eventos propios
         this.limitePropio = this.limitePropio + 3;
+        
         //Cargar en la lista propia mis eventos
         await this._eventoService.getEventos(this.limitePropio);
         this.eventosPropios = this._eventoService.eventosPropios;
@@ -72,6 +72,7 @@ export class PrincipalLibreriaPage implements OnInit {
 
         //limite de libros propios
         this.limiteLibrosPropio = this.limiteLibrosPropio + 3;
+        
         //Cargar en la lista de libros propios
         await this._libroService.getLibros(this.limiteLibrosPropio);
         this.librosPropios = this._libroService.librosPropios;
@@ -143,66 +144,6 @@ export class PrincipalLibreriaPage implements OnInit {
     this.eventosPropios.splice(indexP,1);
   }
 
-  async apuntarse(evento:Evento){
-   //Contemplar mensaje de apuntarse o mensaje de evento completo
-    const index = evento.participantes.findIndex(usuario => usuario === this.usuario);
-
-    if(index > -1){
-      const alert = await this.alertController.create({
-        cssClass: 'my-custom-class',
-        backdropDismiss: false,
-        subHeader: 'Ya estás apuntado en este evento',
-        buttons: ['OK']
-      });
-      await alert.present();
-    }else{
-      if(evento.participantes.length === 4){
-        const alert = await this.alertController.create({
-          cssClass: 'my-custom-class',
-          backdropDismiss: false,
-          subHeader: 'Evento completado',
-          buttons: ['OK']
-        });
-        await alert.present();
-      }else{
-        const alert = await this.alertController.create({
-          cssClass: 'my-custom-class',
-          subHeader: '¡Te has apuntado al evento!',
-          buttons: ['OK']
-        });
-        await alert.present();
-
-        evento.participantes.push(this.usuario);
-    
-        const datos = {
-          _id: evento._id,
-        }
-         this._eventoService.apuntarse(datos); 
-       }
-     }
-    
-  }
-
-  //Desapuntarse de un evento
-  async desapuntarse(evento:Evento){
-    
-    var indice = evento.participantes.indexOf(this.usuario); // obtenemos el indice
-    evento.participantes.splice(indice,1); // 1 es la cantidad de elemento a eliminar
-    
-    const datos = {
-      _id: evento._id,
-    }
-    await this._eventoService.desapuntarse(datos);
-
-    const alert = await this.alertController.create({
-      cssClass: 'my-custom-class',
-      backdropDismiss: false,
-      subHeader: 'Te has borrado del evento',
-      buttons: ['OK']
-    });
-    await alert.present();
-  }
-
   publicarLibro(){
     this.router.navigate(['/registrar-libro']);
   }
@@ -224,31 +165,5 @@ export class PrincipalLibreriaPage implements OnInit {
     let indexP = this.librosPropios.indexOf(libroPropio);
     this.librosPropios.splice(indexP,1);
   }
-
-  
-
- 
-  geolocalizacion(latitud:string, longitud:string):void{
-    /*this.inAppBrowser.create(`https://maps.google.com/maps?z=25&t=m&q=loc:${latitud},${longitud}`,'_blank',{ 
-      lefttoright: 'yes',
-      toolbarposition: 'top',
-      presentationstyle:'fullscreen',
-      toolbartranslucent:	'yes',
-      location: 'yes',
-      hidden: 'no'
-    });*/
-
-  }
-
-  llamarTelefono(telefono:string){
-
-    /*this.callNumber.callNumber(telefono, true)
-      .then(res => console.log('Abriendo marcador', res))
-      .catch(err => console.log('Error marcador', err));
-
-  }*/
-  
-}
-
 
 }

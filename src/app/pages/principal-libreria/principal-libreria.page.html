@@ -1,4 +1,3 @@
-
   <ion-toolbar class="toolbar-color">
     <ion-avatar [routerLink]="'/perfil-libreria'" class="avatar-profile">
       <img src="../../../assets/profile-l.jpg">
@@ -9,12 +8,8 @@
 <div class="options">
     <ion-toolbar >
       <ion-segment>
-        <ion-segment-button (click)="loadEventosPropios()" value="propio">
-         Eventos
-        </ion-segment-button>
-        <ion-segment-button (click)="loadLibrosPropios()" value="ajeno">
-          Libros
-        </ion-segment-button>
+        <ion-segment-button (click)="loadEventosPropios()" value="propio">Eventos</ion-segment-button>
+        <ion-segment-button (click)="loadLibrosPropios()" value="ajeno">Libros</ion-segment-button>
       </ion-segment>
     </ion-toolbar>
     
@@ -24,7 +19,8 @@
           <ion-card-title class="card-titulo"><h4>{{evento.nombreEvento}}</h4></ion-card-title>
         </ion-card-header>
         <ion-card-content style="margin-top: 12px;">
-          <b>Lugar: </b>{{evento.lugar}}<br>
+          <b>Ciudad: </b>{{evento.ciudad}}<br>
+          <b>Direccion: </b>{{evento.direccion}}<br>
           <b>Fecha: </b>{{evento.fecha | date: 'dd/MM/yyyy'}}<br>
           <b>Hora: </b>{{evento.hora | date: 'HH:mm'}}
         </ion-card-content>
@@ -63,7 +59,7 @@
   <ion-footer class="bar-stable">
     <ion-toolbar class="tool-foot" color="light">
       <div class="content-button-event">
-          <ion-button class="button-event" (click)="crearEvento()" fill="solid" slot="end" color="tertiary">Crear evento
+          <ion-button class="button-event" (click)="crearEvento()" fill="solid" slot="end" color="success">Crear evento
           </ion-button>
           <ion-button class="button-book" (click)="publicarLibro()" fill="solid" slot="end" color="medium">Publicar libro
           </ion-button>

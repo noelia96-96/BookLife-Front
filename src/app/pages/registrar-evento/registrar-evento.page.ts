@@ -21,7 +21,8 @@ export class RegistrarEventoPage implements OnInit {
   //Datos registro evento
   public creador: string;
   public nombreEvento: string;
-  public lugar: string;
+  public direccion: string;
+  public ciudad: string;
   public fecha: Date;
   public hora: Date;
   public participantes: string[] = [];
@@ -29,13 +30,15 @@ export class RegistrarEventoPage implements OnInit {
   async ngOnInit() {
     await this._usuarioService.compruebaSiLogado();
     this.usuario = this._usuarioService.usuarioActual.nombre;
+    this.ciudad = this._usuarioService.usuarioActual.ciudad;
   }
 
   async guardar(){
     const data = {
      
       nombreEvento: this.nombreEvento,
-      lugar : this.lugar,
+      direccion : this.direccion,
+      ciudad : this.ciudad,
       //creador: this.usuario, El creador NO se le pasa en la costante desde el front,en el back se coge del token.
       fecha: this.fecha,
       hora: this.hora,
