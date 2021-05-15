@@ -6,7 +6,7 @@ body {
     margin-top: 72px;
     margin-left: 12px;
 }
-.creador,.nombreEvento, .descripcion, .lugar, .fecha, .hora {
+.creador,.nombreEvento, .descripcion, .ciudad, .direccion, .fecha, .hora {
     border: 1px solid #3880ff;
     border-radius: 30px;
     height: 43px;
@@ -17,7 +17,7 @@ body {
 }
 .registration-event {
     width: 228px;
-    margin-top: 91px;
+    margin-top: 38px;
     margin-left: 79px;
 }
 .save-button, .cancel-button {

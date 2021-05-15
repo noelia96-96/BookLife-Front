@@ -8,6 +8,7 @@ export interface usuarios {
     email:String;
     pwd:String;
     sexo?:String;
+    favoritos?: any[];
 }
 
 export interface RootUsuarios {
