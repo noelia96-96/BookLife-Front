@@ -39,7 +39,7 @@
     </ion-card> 
 
     <!-- Libros -->
-    <ion-card *ngFor="let libro of librosPropios" (click)="verLibros()">
+    <ion-card *ngFor="let libro of librosPropios">
       <img src="../../../assets/profile-back2.png">
       <ion-card-header color="light" style="height: 45px;">
         <ion-card-title class="cardStyle"><h4>{{libro.nombreLibro}}</h4></ion-card-title>
@@ -52,15 +52,19 @@
     </ion-card>
 
     <!-- Eventos -->
-    <ion-card *ngFor="let evento of eventosPropios" (click)="verEventos()">
+    <ion-card *ngFor="let evento of eventosPropios">
       <img src="../../../assets/evento.jpg">
       <ion-card-header color="light" style="height: 45px;">
         <ion-card-title class="cardStyle"><h4>{{evento.nombreEvento}}</h4></ion-card-title>
       </ion-card-header>
-      <ion-item color="light">
+      
         <ion-button class="share" (click)="compartir()" expand="block" fill="clear" shape="round">
           <ion-icon name="share"></ion-icon>
         </ion-button>
+        <ion-item color="light">
+        <ion-button *ngIf="!evento.participantes.includes(this.usuario)" (click)="apuntarse(evento)" fill="outline" slot="end" expand="block" [mode]="'md'" class="apuntarse">Apuntarse</ion-button>
+        <ion-button *ngIf="evento.participantes.includes(this.usuario)" (click)="desapuntarse(evento)" fill="outline" slot="end" expand="block" [mode]="'md'" color="dark" class="desapuntarse">Borrarse</ion-button>
+   
       </ion-item>
     </ion-card>
   </div>
