@@ -1,5 +1,8 @@
 <ion-header class="ion-no-border">
   <ion-toolbar class="toolbar-color">
+  <ion-tab-button (click)="presentAlert()" expand="block" [mode]="'md'">
+    <ion-icon name="information-circle-outline" style="margin-left: 90%;  margin-top: 8%; color:gray; zoom:0.0" expand="block" [mode]="'md'"></ion-icon>
+</ion-tab-button>
     <ion-title>Registro</ion-title>
     <ion-buttons slot="start">
       <ion-back-button [defaultHref]="'/'" [mode]="'md'"></ion-back-button>
