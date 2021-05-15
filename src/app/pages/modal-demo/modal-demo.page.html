@@ -12,10 +12,15 @@
         <ion-label><b>Nombre del evento: </b></ion-label>
         <ion-input [(ngModel)]="eventoObtenido.nombreEvento"  type="text" name="evento"></ion-input>
       </ion-item>
+    
+    <ion-item class="ciudad">
+      <ion-label><b>Ciudad: </b></ion-label>
+      <ion-input [(ngModel)]="eventoObtenido.ciudad" type="text" name="ciudad" readonly></ion-input>
+    </ion-item>
 
-    <ion-item class="lugar">
-      <ion-label><b>Lugar: </b></ion-label>
-      <ion-input [(ngModel)]="eventoObtenido.lugar" type="text" name="lugar"></ion-input>
+    <ion-item class="direccion">
+      <ion-label><b>Dirección: </b></ion-label>
+      <ion-input [(ngModel)]="eventoObtenido.direccion" type="text" name="direccion"></ion-input>
     </ion-item>
      <ion-item class="fecha">
       <ion-label><b>Fecha: </b></ion-label>

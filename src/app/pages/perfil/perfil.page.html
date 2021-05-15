@@ -12,7 +12,7 @@
         <ion-segment-button (click)="librerias()" value="a">Librerías</ion-segment-button>
         <ion-segment-button (click)="libros()" value="b">Libros</ion-segment-button>
         <ion-segment-button (click)="eventos()" value="c">Eventos</ion-segment-button>
-        <ion-segment-button (click)="favoritos()" value="d">Favoritos</ion-segment-button>
+        <ion-segment-button (click)="fav()" value="d">Favoritos</ion-segment-button>
       </ion-segment>
       <ion-segment>
         <ion-segment-button (click)="librerias()" value="propio">
@@ -24,43 +24,59 @@
       </ion-segment>
     </ion-toolbar>
 
-    <!-- CAMBIAR COSAS AQUI -->
-
-    <!-- OPCIONES: 
-    Librerias 
-    Eventos
-    Librerias favoritas
-    Libros -->
-
-    <ion-card>
+  <!-- Librerias -->
+    <ion-card *ngFor="let usuario of usuariosLibreros">
+      <!-- (click)="verLibreria()"  poner arriba en ion-card-->
       <img src="../../../assets/eventoa.jpg">
       <ion-card-header color="light" style="height: 45px;">
-        <ion-card-title style="color: rgb(61, 61, 240);text-align: center; font-size: 17px; height: 45px; margin-top: -24px;"><h4>Nombre libreria</h4></ion-card-title>
+        <ion-card-title class="cardStyle"><h4>{{usuario.nombre}}</h4></ion-card-title>
       </ion-card-header>
-      <ion-card-content style="margin-top: 12px;">
-        <b>Descripción: </b><br>
-        <b>Dirección: </b><br>
-        <b>Ciudad: </b>
-      </ion-card-content>
       <ion-item color="light">
-        <ion-button  class="option" fill="outline" slot="end" expand="block" [mode]="'md'">Web</ion-button>
-        <ion-button class="option" fill="outline" slot="end" expand="block" [mode]="'md'" color="dark">Info</ion-button>
-        <ion-button><ion-icon name="call-outline"></ion-icon></ion-button>
-        <ion-button class="localizacion" (click)="geolocalizacion()" expand="block" fill="clear" shape="round">
-          <ion-icon name="location-outline"></ion-icon>
-        </ion-button>
         <ion-button class="share" (click)="compartir()" expand="block" fill="clear" shape="round">
-          <ion-icon name="share-outline"></ion-icon>
+          <ion-icon name="share"></ion-icon>
+        </ion-button>
+
+        <ion-button *ngIf="usuarioActual.favoritos.includes(usuario.nombre)" class="fav" (click)="borrarFavorito(usuario.nombre) " expand="block" fill="clear" shape="round">
+         <ion-icon name="heart-sharp" color="danger"></ion-icon>
+        </ion-button>
+        
+        <ion-button *ngIf="!usuarioActual.favoritos.includes(usuario.nombre)" class="fav" (click)="guardarFavorito(usuario.nombre) " expand="block" fill="clear" shape="round">
+         <ion-icon name="heart-outline" color="danger"></ion-icon>
         </ion-button>
       </ion-item>
     </ion-card> 
-  </div>
 
+    <!-- Libros -->
+    <ion-card *ngFor="let libro of librosPropios" (click)="verLibros()">
+      <img src="../../../assets/profile-back2.png">
+      <ion-card-header color="light" style="height: 45px;">
+        <ion-card-title class="cardStyle"><h4>{{libro.nombreLibro}}</h4></ion-card-title>
+      </ion-card-header>
+      <ion-item color="light">
+        <ion-button class="share" (click)="compartir()" expand="block" fill="clear" shape="round">
+          <ion-icon name="share"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card>
+
+    <!-- Eventos -->
+    <ion-card *ngFor="let evento of eventosPropios" (click)="verEventos()">
+      <img src="../../../assets/evento.jpg">
+      <ion-card-header color="light" style="height: 45px;">
+        <ion-card-title class="cardStyle"><h4>{{evento.nombreEvento}}</h4></ion-card-title>
+      </ion-card-header>
+      <ion-item color="light">
+        <ion-button class="share" (click)="compartir()" expand="block" fill="clear" shape="round">
+          <ion-icon name="share"></ion-icon>
+        </ion-button>
+      </ion-item>
+    </ion-card>
+  </div>
   <ion-infinite-scroll threshold="200px">
-  <ion-infinite-scroll-content
-    loadingSpinner="circular"
-    loadingText="Cargando librerias...">
-  </ion-infinite-scroll-content>
-</ion-infinite-scroll>
+    <ion-infinite-scroll-content
+      loadingSpinner="circular"
+      loadingText="Cargando...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>
 

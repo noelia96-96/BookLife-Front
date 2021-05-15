@@ -10,9 +10,20 @@ body {
     height: 60px;
     background-color: #b6dcf3;
 }
-.localizacion, .share {
+.fav, .share {
     font-size: 17px;
 }
-.option {
-    //font-size: 15px;
+.fav{
+    position: absolute;
+    right: 16px;
+}
+.share{
+    position: absolute;
+    left: 0;
+}
+.cardStyle {
+    text-align: center; 
+    font-size: 17px; 
+    height: 45px; 
+    margin-top: -14px;
 }
