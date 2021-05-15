@@ -170,10 +170,6 @@ async libros() {
 
 }
 
-//verLibros(){
-  
-//}
-
 //Boton del menu - favoritos
 async fav() {
 
@@ -214,6 +210,64 @@ borrarFavorito(libreria){
   this._usuarioService.borrarLibreriaFav(libreria);
 }
 
+//Apuntarse al evento
+async apuntarse(evento:Evento){
+  //Contemplar mensaje de apuntarse o mensaje de evento completo
+    const index = evento.participantes.findIndex(usuario => usuario === this.usuario);
 
+    if(index > -1){
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        backdropDismiss: false,
+        subHeader: 'Ya estás apuntado en este evento',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }else{
+      if(evento.participantes.length === 10){
+        const alert = await this.alertController.create({
+          cssClass: 'my-custom-class',
+          backdropDismiss: false,
+          subHeader: 'Evento completado',
+          buttons: ['OK']
+        });
+        await alert.present();
+      }else{
+        const alert = await this.alertController.create({
+          cssClass: 'my-custom-class',
+          subHeader: '¡Te has apuntado al evento!',
+          buttons: ['OK']
+        });
+        await alert.present();
+
+        evento.participantes.push(this.usuario);
+    
+        const datos = {
+          _id: evento._id,
+        }
+         this._eventoService.apuntarse(datos); 
+       }
+     } 
+}
+
+//Desapuntarse del evento
+async desapuntarse(evento:Evento){
+   var indice = evento.participantes.indexOf(this.usuario); // obtenemos el indice
+    evento.participantes.splice(indice,1); // 1 es la cantidad de elemento a eliminar
+    
+    const datos = {
+      _id: evento._id,
+    }
+    await this._eventoService.desapuntarse(datos);
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      backdropDismiss: false,
+      subHeader: 'Te has borrado del evento',
+      buttons: ['OK']
+    });
+    await alert.present();
+
+}
 
 }

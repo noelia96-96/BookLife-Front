@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from '../../services/usuario.service';
 import { async } from '@angular/core/testing';
 import { Router } from '@angular/router';
+import { AlertController} from '@ionic/angular';
 
 @Component({
   selector: 'app-registro',
@@ -10,7 +11,11 @@ import { Router } from '@angular/router';
 })
 export class RegistroPage implements OnInit {
 
-  constructor(private _usuarioService:UsuarioService, private _router:Router) { }
+  constructor(
+    private _usuarioService:UsuarioService, 
+    private _router:Router,
+    private alertController: AlertController,
+    ) { }
   
   //Datos de registro de usuario bibliofilo
   
@@ -48,6 +53,19 @@ export class RegistroPage implements OnInit {
 
   seleccionarSexo(data){
     this.sexo = data.detail.value;
+  }
+
+   async presentAlert(){
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      backdropDismiss: false,
+      header: 'BookLife',
+      subHeader: 'App BookLife con la que podrás ver libreriás de segunda mano en la ciudad que estés. Podrás apuntarte a los eventos y reservar sus libros más interesantes.',
+      buttons: ['OK']
+    });
+
+    await alert.present();
   }
 
   
