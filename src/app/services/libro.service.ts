@@ -37,7 +37,6 @@ export class LibroService {
       let datos = {
         limite: limit,
       }
-      console.log(datos)
       return new Promise<RootLibro>(resolve=>{
         this._http.post<RootLibro>(`${environment.urlLibro}mostrarLibro`,datos).subscribe(resp=>{
           console.log(resp)
@@ -46,6 +45,22 @@ export class LibroService {
       resolve(resp);
      });
    });
+ }
+
+//Mostrar libros al bibliofilo
+ mostrarLibros(limit:number){
+    let datos = {
+        limite: limit,
+      }
+       return new Promise<RootLibro>(resolve=>{
+        this._http.post<RootLibro>(`${environment.urlLibro}mostrarLibrosBibliofilo`,datos).subscribe(resp=>{
+          console.log(resp)
+          this.librosPropios=resp.libro[0];
+          console.log(resp)
+      resolve(resp);
+     });
+   });
+
  }
 
  borrar(){

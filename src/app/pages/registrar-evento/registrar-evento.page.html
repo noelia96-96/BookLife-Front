@@ -14,9 +14,12 @@
     <ion-item class="nombreEvento">
       <ion-input  [(ngModel)]="nombreEvento"  type="text" name="nombreEvento" placeholder="*Nombre del evento" autofocus required></ion-input>
     </ion-item>
-  <ion-item class="lugar">
-    <ion-input [(ngModel)]="lugar"  type="text" name="lugar" placeholder="*Lugar" required></ion-input>
+  <ion-item class="ciudad">
+    <ion-input type="text" name="ciudad" readonly>{{this.ciudad}}</ion-input>
   </ion-item>
+  <ion-item class="direccion">
+      <ion-input  [(ngModel)]="direccion"  type="text" name="direccion" placeholder="*Dirección" required></ion-input>
+    </ion-item>
    <ion-item class="fecha">
     <ion-datetime [(ngModel)]="fecha"  name="fecha"  mmin="2021" max="2023" displayFormat="DD/MM/YYYY" pikerFormat="DD MM YYYY" placeholder="*Fecha" required></ion-datetime>
   </ion-item>
@@ -32,7 +35,7 @@
 <ion-footer class="bar-stable">
   <ion-toolbar color="light">
     <div style="text-align: center;">
-  <ion-button (click)="guardar()" class="save-button" disabled="{{!this.nombreEvento || !this.lugar || !this.fecha || !this.hora}}" color="secondary" style="margin-left:0%" >
+  <ion-button (click)="guardar()" class="save-button" disabled="{{!this.nombreEvento || !this.direccion || !this.fecha || !this.hora}}" color="secondary" style="margin-left:0%" >
     <ion-icon name="save-outline"></ion-icon>
     <ion-label style="margin-left: 10px;">Guardar</ion-label>
   </ion-button>

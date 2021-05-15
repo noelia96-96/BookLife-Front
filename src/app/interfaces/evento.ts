@@ -3,7 +3,8 @@ export interface Evento {
     nombreEvento: String;
     creador: String;
     fecha: Date;
-    lugar: String;
+    direccion: String;
+    ciudad: String;
     hora: Date;
     participantes: String[];
     //imagen: string
