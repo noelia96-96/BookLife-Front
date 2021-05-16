@@ -8,7 +8,7 @@ import { EventoService } from '../../services/evento.service';
 import { LibroService } from '../../services/libro.service';
 import { AlertController} from '@ionic/angular';
 import { IonInfiniteScroll } from '@ionic/angular';
-
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 
 @Component({
   selector: 'app-perfil',
@@ -24,6 +24,7 @@ export class PerfilPage implements OnInit {
     private _eventoService:EventoService,
     private _libroService:LibroService,
     private alertController: AlertController,
+    private socialSharing : SocialSharing,
     
     ) { }
 
@@ -264,6 +265,61 @@ async desapuntarse(evento:Evento){
       cssClass: 'my-custom-class',
       backdropDismiss: false,
       subHeader: 'Te has borrado del evento',
+      buttons: ['OK']
+    });
+    await alert.present();
+
+}
+
+compartirLibreria(library){
+//     console.log(library);
+//     var options = {
+//       message: 'Mira este bar', // not supported on some apps (Facebook, Instagram)
+//       url: library.url
+// };
+//     this.socialSharing.shareWithOptions(options);
+  }
+
+
+
+compartirLibro(book){
+
+}
+
+compartirEvento(event){
+
+}
+async reservarLibro(libro:Libro){
+    const index = libro.participantes.findIndex(usuario => usuario === this.usuario);
+
+    const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        subHeader: '¡Has reservado el libro con éxito!',
+        buttons: ['OK']
+      });
+      await alert.present();
+
+      libro.participantes.push(this.usuario);
+    
+      const datos = {
+        nombreLibro: libro.nombreLibro,
+      }
+      this._libroService.reservarLibro(datos); 
+}
+
+async quitarReservaLibro(libro:Libro){
+  var indice = libro.participantes.indexOf(this.usuario); // obtenemos el indice
+    libro.participantes.splice(indice,1); // 1 es la cantidad de elemento a eliminar
+    
+    const datos = {
+      nombreLibro: libro.nombreLibro,
+    }
+    await this._libroService.quitarReservaLibro(datos);
+
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      backdropDismiss: false,
+      subHeader: 'Has cancelado la reserva del libro con éxito',
       buttons: ['OK']
     });
     await alert.present();
