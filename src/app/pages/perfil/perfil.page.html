@@ -24,7 +24,7 @@
         <ion-card-title class="cardStyle"><h4>{{usuario.nombre}}</h4></ion-card-title>
       </ion-card-header>
       <ion-item color="light">
-        <ion-button class="share" (click)="compartir()" expand="block" fill="clear" shape="round">
+        <ion-button class="share" (click)="compartirLibreria(library)" expand="block" fill="clear" shape="round">
           <ion-icon name="share"></ion-icon>
         </ion-button>
 
@@ -40,13 +40,19 @@
 
     <!-- Libros -->
     <ion-card *ngFor="let libro of librosPropios">
-      <img src="../../../assets/profile-back2.png">
+      <img src="../../../assets/pb.jpg">
       <ion-card-header color="light" style="height: 45px;">
         <ion-card-title class="cardStyle"><h4>{{libro.nombreLibro}}</h4></ion-card-title>
       </ion-card-header>
       <ion-item color="light">
-        <ion-button class="share" (click)="compartir()" expand="block" fill="clear" shape="round">
+        <ion-button class="share" (click)="compartirLibro(book)" expand="block" fill="clear" shape="round">
           <ion-icon name="share"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="!libro.participantes.includes(this.usuario)" class="fav" (click)="reservarLibro(libro) " expand="block" fill="clear" shape="round">
+         <ion-icon name="bag-outline" color="dark"></ion-icon>
+        </ion-button>
+        <ion-button *ngIf="libro.participantes.includes(this.usuario)" class="fav" (click)="quitarReservaLibro(libro) " expand="block" fill="clear" shape="round">
+        <ion-icon name="bag-check-outline" color="dark"></ion-icon>
         </ion-button>
       </ion-item>
     </ion-card>
@@ -58,7 +64,7 @@
         <ion-card-title class="cardStyle"><h4>{{evento.nombreEvento}}</h4></ion-card-title>
       </ion-card-header>
       
-        <ion-button class="share" (click)="compartir()" expand="block" fill="clear" shape="round">
+        <ion-button class="share" (click)="compartirEvento(event)" expand="block" fill="clear" shape="round">
           <ion-icon name="share"></ion-icon>
         </ion-button>
         <ion-item color="light">
