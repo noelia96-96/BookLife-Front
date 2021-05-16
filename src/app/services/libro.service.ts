@@ -116,8 +116,38 @@ getToken(){
     Storage.get({key:'token'}).then(data=>{
    resolve(data);
   });
-  
 });
+}
+
+reservarLibro(datos:any){
+  console.log(datos);
+  return new Promise<any>(resolve=>{
+    this._http.post(`${environment.urlLibro}reservarLibro`,datos).subscribe((resp:any)=>{
+      if(resp.status=='ok' && resp.token){
+        Storage.set({
+          key:'token',
+          value:resp.token
+        });
+      }
+        resolve(resp);
+    });
+  });
+
+}
+
+quitarReservaLibro(datos:any){
+  return new Promise<any>(resolve=>{
+   this._http.post(`${environment.urlLibro}quitarReservaLibro`,datos).subscribe((resp:any)=>{
+     if(resp.status=='ok' && resp.token){
+       Storage.set({
+         key:'token',
+         value:resp.token
+       });
+     }
+       resolve(resp);
+   });
+ });
+
 }
 
 }
