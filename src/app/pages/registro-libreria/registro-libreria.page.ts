@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { AlertController} from '@ionic/angular';
 
 @Component({
-  selector: 'app-registro',
+  selector: 'app-registro-libreria',
   templateUrl: './registro-libreria.page.html',
   styleUrls: ['./registro-libreria.page.scss'],
 })
@@ -31,7 +31,7 @@ export class RegistroLibreriaPage implements OnInit {
 
   //objeto data que coge los datos que estan en el formulario
   //Luego llama al metodo y cuando termina lo muestra por pantalla respuesta post
-  async registroLibreria($){
+  async registroLibreria(){
     let data = {
       nombre:this.nombre,
       ciudad:this.ciudad,

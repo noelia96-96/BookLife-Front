@@ -1,41 +1,17 @@
-  <ion-toolbar class="toolbar-color">
-    <ion-avatar [routerLink]="'/perfil-bibliofilo'" class="avatar-profile">
-      <img src="../../../assets/profile-w.png">
-      <!-- <img src="../../../assets/profile-m.png"> -->
-    </ion-avatar>
-  </ion-toolbar>
-
-<ion-content>
+ <ion-header>
+   <div (click)="volver()" color="none" no-shadow>
+    <ion-icon class="volver" name="arrow-back-outline"></ion-icon>
+  </div>
+ </ion-header>
+  
+ <ion-content>
   <div class="ion-padding">
     <ion-toolbar>
       <ion-segment>
-        <ion-segment-button (click)="librerias()" value="a">Librerías</ion-segment-button>
-        <ion-segment-button (click)="libros()" value="b">Libros</ion-segment-button>
-        <ion-segment-button (click)="eventos()" value="c">Eventos</ion-segment-button>
-        <ion-segment-button (click)="fav()" value="d">Favoritos</ion-segment-button>
+        <ion-segment-button (click)="verLibrosPicharCard()" value="b">Libros</ion-segment-button>
+        <ion-segment-button (click)="verEventosPincharCard()" value="c">Eventos</ion-segment-button>
       </ion-segment>
     </ion-toolbar>
-
-  <!-- Librerias -->
-    <ion-card *ngFor="let usuario of usuariosLibreros" (click)="verLibreria(usuario)">
-      <img src="../../../assets/eventoa.jpg">
-      <ion-card-header color="light" style="height: 45px;">
-        <ion-card-title class="cardStyle"><h4>{{usuario.nombre}}</h4></ion-card-title>
-      </ion-card-header>
-      <ion-item color="light">
-        <ion-button class="share" (click)="compartirLibreria(usuario)" expand="block" fill="clear" shape="round">
-          <ion-icon name="share"></ion-icon>
-        </ion-button>
-
-        <ion-button *ngIf="usuarioActual.favoritos.includes(usuario.nombre)" class="fav" (click)="borrarFavorito(usuario.nombre)" expand="block" fill="clear" shape="round">
-         <ion-icon name="heart-sharp" color="danger"></ion-icon>
-        </ion-button>
-        
-        <ion-button *ngIf="!usuarioActual.favoritos.includes(usuario.nombre)" class="fav" (click)="guardarFavorito(usuario.nombre)" expand="block" fill="clear" shape="round">
-         <ion-icon name="heart-outline" color="danger"></ion-icon>
-        </ion-button>
-      </ion-item>
-    </ion-card> 
 
     <!-- Libros -->
     <ion-card *ngFor="let libro of librosPropios">
@@ -72,4 +48,17 @@
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 </ion-content>
+
+<ion-footer class="bar-stable">
+  <ion-toolbar class="tool-foot" color="light">
+    <div class="content-button-event">
+      <ion-button class="button-telefono" (click)="telefono()" fill="outline" slot="end" color="primary">
+        <ion-icon name="call-outline"></ion-icon>
+      </ion-button>
+      <ion-button class="button-web" (click)="web()" fill="outline" slot="end" color="medium">
+        <ion-icon name="globe-outline"></ion-icon>
+      </ion-button>
+  </div>
+  </ion-toolbar>
+</ion-footer>
 

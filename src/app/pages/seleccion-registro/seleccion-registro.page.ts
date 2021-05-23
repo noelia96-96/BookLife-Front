@@ -4,7 +4,7 @@ import { async } from '@angular/core/testing';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-registro',
+  selector: 'app-seleccion-registro',
   templateUrl: './seleccion-registro.page.html',
   styleUrls: ['./seleccion-registro.page.scss'],
 })
