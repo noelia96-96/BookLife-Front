@@ -1,5 +1,5 @@
 <body class="background">
-    <div (click)="volver()" [mode]="'md'" color="none" no-shadow>
+    <div (click)="volver()" color="none" no-shadow>
       <ion-icon class="volver" name="arrow-back-outline"></ion-icon>
     </div>
     <div class="perfil-libreria">
@@ -8,16 +8,16 @@
             <h3 class="title-text">{{this.usuario}}</h3>
           </div>
       <ion-button class="personal-data-button" (click)="datosPersonales()" expand="block" color="success">
-          <span>Datos personales</span>
+        <span>Datos personales</span>
       </ion-button>
       <ion-button class="exit-button" (click)="cerrarSesion()" expand="block"color="medium">
-          <span>Cerrar sesión</span>
+        <span>Cerrar sesión</span>
       </ion-button>
     </div>
   </div>
-    <div class="avatar-content">
-      <img  class= "image-profile" [routerLink]="'/perfil-libreria'"  src="../../../assets/profile-l.jpg">
-    </div>
+  <div class="avatar-content">
+    <img  class= "image-profile" [routerLink]="'/perfil-libreria'" src="../../../assets/profile-l.jpg">
+  </div>
 </body>
   
   

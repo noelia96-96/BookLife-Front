@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { Router} from '@angular/router';
 import { Evento } from 'src/app/interfaces/evento';
 import { Libro } from 'src/app/interfaces/libro';
@@ -9,22 +10,26 @@ import { LibroService } from '../../services/libro.service';
 import { AlertController} from '@ionic/angular';
 import { IonInfiniteScroll } from '@ionic/angular';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { CallNumber} from '@ionic-native/call-number/ngx';
 
 @Component({
-  selector: 'app-perfil',
-  templateUrl: './perfil.page.html',
-  styleUrls: ['./perfil.page.scss'],
+  selector: 'app-card-libreria',
+  templateUrl: './card-libreria.page.html',
+  styleUrls: ['./card-libreria.page.scss'],
 })
-export class PerfilPage implements OnInit {
+export class CardLibreriaPage implements OnInit {
   @ViewChild(IonInfiniteScroll) infiniteScroll: IonInfiniteScroll;
 
   constructor(
     private router: Router,
+    private inAppBrowser: InAppBrowser,
     private _usuarioService:UsuarioService,
     private _eventoService:EventoService,
     private _libroService:LibroService,
     private alertController: AlertController,
     private socialSharing : SocialSharing,
+    private callNumber: CallNumber,
+   
     
     ) { }
 
@@ -59,18 +64,23 @@ export class PerfilPage implements OnInit {
   //limite de favoritos
   limiteFavoritos : number = 3; 
 
+  //libreria pinchada
+  libreriaPinchada : any = {};
+
   async ngOnInit() {
     
     const logado  = await this._usuarioService.compruebaSiLogado();
     this.usuarioActual = this._usuarioService.usuarioActual;
-    console.log(this.usuarioActual);
+    this.libreriaPinchada = this._usuarioService.libreriaPinchadaCard;
+
+    console.log(this.libreriaPinchada);
     if(!logado){
       this.router.navigate(['/inicio']);
       return;
     }
 
     //Para que se muestren las librerias al entrar en el perfil, que sea lo primero que se cargue
-    this.librerias();
+    this.verLibrosPicharCard();
 
     //llamar al servicio de usuario
     this.usuario = this._usuarioService.usuarioActual.nombre;
@@ -112,28 +122,25 @@ export class PerfilPage implements OnInit {
     this.router.navigateByUrl('/inicio');
   }
 
-async librerias() {
-
+  async verLibrosPicharCard() {
     //Quitar de la lista contraria los eventos
     this.eventosPropios = []; 
 
-    //Quitar de la lista contraria los libros
-    this.librosPropios = [];
+    //Quitar de la lista contraria las librerias
+    this.usuariosLibreros = []; 
 
-    //Limpiar la propia lista de librerias
-    this.usuariosLibreros = [];
+    //Limite de libros
+    this.limiteLibrosPropio = 3; 
 
-    //limite de usuarios tipo - libreria
-    this.limiteUsuariosLibreros = 3;
+    //Llamar al servicio para llamar al back para recuperar los libros
+    let nombreLibreriaPinchada = this.libreriaPinchada.nombre;
+    await this._libroService.mostrarLibrosPicharCard(this.limiteLibrosPropio, nombreLibreriaPinchada);
 
-    //llamar al servicio para llamar al back para recuperar los libros
-    await this._usuarioService.mostrarLibreria(this.limiteUsuariosLibreros);
-    
-    //Carga del servicio la lista de usuarios
-    this.usuariosLibreros = this._usuarioService.usuarioLibreria;
+    //Carga del servicio la lista de libros
+    this.librosPropios = this._libroService.libroCardPinchada;
 }
 
-async eventos() {
+async verEventosPincharCard() {
     this.booleanEventos = true;
 
     //Quitar de la lista contraria las librerias
@@ -146,28 +153,11 @@ async eventos() {
     this.limitePropio = 3; 
     
     //Llamar al servicio para llamar al back para recuperar los eventos
-    await this._eventoService.getEventosPorBibliofilo(this.limitePropio);
+    let nombreLibreriaPinchada = this.libreriaPinchada.nombre;
+    await this._eventoService.mostrarEventosPicharCard(this.limitePropio, nombreLibreriaPinchada); 
     
     //Carga del servicio la lista de los eventos
-    this.eventosPropios = this._eventoService.eventosPropios;
-}
-
-async libros() {
-    //Quitar de la lista contraria los eventos
-    this.eventosPropios = []; 
-
-    //Quitar de la lista contraria las librerias
-    this.usuariosLibreros = []; 
-
-    //Limite de libros
-    this.limiteLibrosPropio = 3; 
-
-    //Llamar al servicio para llamar al back para recuperar los libros
-    await this._libroService.mostrarLibros(this.limiteLibrosPropio);
-    
-    //Carga del servicio la lista de libros
-    this.librosPropios = this._libroService.librosPropios;
-
+    this.eventosPropios = this._eventoService.eventoCardPinchada;
 }
 
 //Boton del menu - favoritos
@@ -265,7 +255,6 @@ async desapuntarse(evento:Evento){
       buttons: ['OK']
     });
     await alert.present();
-
 }
 
 compartirLibreria(usuario){                  
@@ -311,14 +300,29 @@ async quitarReservaLibro(libro:Libro){
     });
     await alert.present();
   }
-  
-verLibreria(usuario){
-  this._usuarioService.libreriaPinchadaCard = usuario;  
-  console.log(this._usuarioService.libreriaPinchadaCard)
-  this.router.navigate(['/card-libreria']);
+
+  volver(){
+    this.router.navigateByUrl('/perfil');
+  }
+
+  telefono(){
+    const telefono = this.libreriaPinchada.telefono;
+    this.callNumber.callNumber(telefono, true)
+    .then(res => console.log('Abriendo marcador', res))
+    .catch(err => console.log('Error marcador', err));
+  }
+
+  web(){
+    let web = this.libreriaPinchada.web;
+    this.inAppBrowser.create(web, '_blank',{ 
+      lefttoright: 'yes',
+      toolbarposition: 'top',
+      presentationstyle:'fullscreen',
+      toolbartranslucent:	'yes',
+      location: 'yes',
+      hidden: 'no',
+      hideweblibreria:	'yes'
+    });
+
+  }
 }
-
-
-}
-
-

@@ -80,6 +80,10 @@ const routes: Routes = [
     path: 'datos-personales-bibliofilo',
     loadChildren: () => import('./pages/datos-personales-bibliofilo/datos-personales-bibliofilo.module').then( m => m. DatosPersonalesBibliofiloPageModule)
   },
+  {
+    path: 'card-libreria',
+    loadChildren: () => import('./pages/card-libreria/card-libreria.module').then( m => m. CardLibreriaPageModule)
+  },
 ];
 
 @NgModule({
