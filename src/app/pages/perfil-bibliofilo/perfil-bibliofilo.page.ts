@@ -5,7 +5,7 @@ import { AlertController} from '@ionic/angular';
 import { IonInfiniteScroll } from '@ionic/angular';
 
 @Component({
-  selector: 'app-perfil',
+  selector: 'app-perfil-bibliofilo',
   templateUrl: './perfil-bibliofilo.page.html',
   styleUrls: ['./perfil-bibliofilo.page.scss'],
 })
