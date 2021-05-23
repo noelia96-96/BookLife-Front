@@ -20,6 +20,7 @@ public usuarioLibreria : usuarios[];
 public usuariosPropios : usuarios[];
 public idUsuarioModificar : String;
 public usuarioModificar : usuarios;
+public libreriaPinchadaCard : any;
 
   registro(dato:any){
     return new Promise<any>((resolve, reject)=>{
@@ -179,12 +180,12 @@ borrarLibreriaFav(libreria){
 }
 
 //Mostrar las librerias favoritas en apartado Favoritos
-mostrarLibrosFavoritos(limit:number){
+mostrarLibreriasFavoritas(limit:number){
      let datos = {
         limite: limit,
       }
        return new Promise<RootUsuarios>(resolve=>{
-        this._http.post<RootUsuarios>(`${environment.urlUsuario}mostrarLibrosFavoritos`,datos).subscribe(resp=>{
+        this._http.post<RootUsuarios>(`${environment.urlUsuario}mostrarLibreriasFavoritas`,datos).subscribe(resp=>{
           this.usuarioLibreria=resp.usuario[0];
           console.log(this.usuarioLibreria)
       resolve(resp);

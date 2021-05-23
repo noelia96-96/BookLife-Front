@@ -19,6 +19,7 @@ export class LibroService {
       public libroBorrar : Libro;
       public libroIdBorrar : String;
       public librosPropios : Libro[];
+      public libroCardPinchada : any;
 
       registrarLibro(dato:any){
         console.log(dato)
@@ -148,6 +149,20 @@ quitarReservaLibro(datos:any){
    });
  });
 
+}
+
+//Mostrar las librerias al pinchar en la card de la libreria
+mostrarLibrosPicharCard(limit:number, libreriaPinchada:string){
+  let datos = {
+    limite: limit,
+    libreriaPinchadaCard: libreriaPinchada
+   }
+    return new Promise<RootLibro>(resolve=>{
+     this._http.post<RootLibro>(`${environment.urlLibro}mostrarLibrosPicharCard`,datos).subscribe(resp=>{
+      this.libroCardPinchada = resp.libro[0];
+   resolve(resp);
+  });
+});
 }
 
 }
