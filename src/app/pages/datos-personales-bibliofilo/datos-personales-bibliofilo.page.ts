@@ -7,7 +7,7 @@ import { RootUsuarios } from '../../interfaces/usuarios';
 import {AfterViewInit, ElementRef, ViewChild} from '@angular/core';
 
 @Component({
-  selector: 'app-modal-demo',
+  selector: 'app-datos-personales',
   templateUrl: './datos-personales-bibliofilo.page.html',
   styleUrls: ['./datos-personales-bibliofilo.page.scss'],
 })
