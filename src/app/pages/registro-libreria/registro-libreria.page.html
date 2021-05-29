@@ -32,7 +32,7 @@
       </ion-item>
     <ion-item class="direccion">
       <ion-icon class="location" name="location-outline"></ion-icon>
-      <ion-input  [(ngModel)]="direccion" name="direccion" type="text" placeholder="*Dirección" required></ion-input>
+      <ion-input [(ngModel)]="direccion" name="direccion" type="text" placeholder="*Dirección" required></ion-input>
     </ion-item>
     <ion-item class="telefono">
       <ion-icon class="phone" name="call-outline"></ion-icon>
@@ -44,7 +44,7 @@
     </ion-item>
     <ion-item class="email">
       <ion-icon class="mail" name="mail-outline"></ion-icon>
-      <ion-input [(ngModel)]="email" name="email" type="email" placeholder="*Email" pattern="[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})"></ion-input>
+      <ion-input [(ngModel)]="email" name="email" type="email" placeholder="*Email" required></ion-input>
     </ion-item>
     <ion-item class="contraseña">
       <ion-icon class="lock" name="lock-closed-outline"></ion-icon>
