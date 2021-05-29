@@ -25,6 +25,8 @@
           <b>Hora: </b>{{evento.hora | date: 'HH:mm'}}
         </ion-card-content>
         <ion-item color="light">
+          <ion-icon name="accessibility-outline"></ion-icon>
+          <span>{{evento.participantes.length}}</span>
           <ion-button class="option" (click)="editarEvento(evento._id)" fill="outline" slot="end" >Editar</ion-button>
           <ion-button class="option" (click)="borrarEvento(evento._id)" fill="outline" slot="end" color="danger">Borrar</ion-button> 
         </ion-item>
@@ -42,8 +44,14 @@
         <b>Precio: </b>{{libro.precio}}
       </ion-card-content>
       <ion-item color="light">
+        <ion-button *ngIf="libro.participantes.length > 0"  class="reservado" fill="outline" slot="end" color="success">Reservado</ion-button>
         <ion-button class="option" (click)="editarLibro(libro._id)" fill="outline" slot="end" >Editar</ion-button>
         <ion-button class="option" (click)="borrarLibro(libro._id)" fill="outline" slot="end" color="danger">Borrar</ion-button> 
+      </ion-item>
+      <ion-item *ngIf="libro.participantes.length > 0" class="personaReservaLibro" color="light">
+        <div>
+          <span>{{libro.participantes[0]}}</span><br>
+        </div>
       </ion-item>
     </ion-card>
 

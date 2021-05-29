@@ -41,10 +41,35 @@ export class RegistroLibreriaPage implements OnInit {
       email:this.email,
       pwd:this.pwd, 
     }
-    console.log(data)
-   
-    const resultado = await this._usuarioService.registroLibreria(data);
-    this._router.navigate(['/inicio']);
+    
+    //Patrón email
+    var patternEmail= new RegExp ('[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})');
+    //Patrón teléfono
+    var patternTelefono= new RegExp ('[0-9]{9}');
+
+    if(!patternEmail.test(this.email)){
+       const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        backdropDismiss: false,
+        subHeader: 'Formato incorrecto del email',
+        buttons: ['OK']
+      });
+      await alert.present();
+    }else if(!patternTelefono.test(this.telefono.toString())){
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        backdropDismiss: false,
+        subHeader: 'Formato incorrecto del teléfono',
+        buttons: ['OK']
+      });
+      await alert.present();
+
+    }
+    else{
+      const resultado = await this._usuarioService.registroLibreria(data);
+      this._router.navigate(['/inicio']);
+     
+    }
   }
 
   seleccionarCiudad(data){
