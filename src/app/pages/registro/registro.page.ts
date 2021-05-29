@@ -30,9 +30,8 @@ export class RegistroPage implements OnInit {
 
   //Objeto data que coge los datos que están en el formulario
   //Luego llama al método y cuando termina lo muestra por pantalla - respuesta post
-  async registrar($){
+  async registrar(){
     let data = {
-     
       nombre: this.nombre,
       pwd: this.pwd,
       email: this.email,
@@ -40,11 +39,20 @@ export class RegistroPage implements OnInit {
       sexo:this.sexo,
       favoritos: Array<String>()
     }
-
-    console.log(data);
-    
-    const resultado = await this._usuarioService.registro(data);
-    this._router.navigate(['/inicio']);
+     //Patrón email
+     var pattern= new RegExp ('[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})');
+     if(pattern.test(this.email)){
+       const resultado = await this._usuarioService.registroLibreria(data);
+       this._router.navigate(['/inicio']);
+     }else{
+       const alert = await this.alertController.create({
+         cssClass: 'my-custom-class',
+         backdropDismiss: false,
+         subHeader: 'Formato incorrecto del email',
+         buttons: ['OK']
+       });
+       await alert.present();
+     }
   }
   
   seleccionarCiudad(data){
