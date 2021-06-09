@@ -42,7 +42,7 @@ export class RegistroPage implements OnInit {
      //Patrón email
      var pattern= new RegExp ('[A-Za-z0-9._%+-]{3,}@[a-zA-Z]{3,}([.]{1}[a-zA-Z]{2,}|[.]{1}[a-zA-Z]{2,}[.]{1}[a-zA-Z]{2,})');
      if(pattern.test(this.email)){
-       const resultado = await this._usuarioService.registroLibreria(data);
+       const resultado = await this._usuarioService.registro(data);
        this._router.navigate(['/inicio']);
      }else{
        const alert = await this.alertController.create({

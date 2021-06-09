@@ -23,6 +23,16 @@
     <ion-item class="precio">
       <ion-input  [(ngModel)]="precio"  type="text" name="precio" placeholder="*Precio" autofocus required></ion-input>
     </ion-item>
+    <div style="text-align: center;">
+      <ion-button class="button-galeria" style="margin-top: 10px;"color="primary" fill="outline" slot="end" (click)="abrirGaleria()">
+          <ion-icon name="image-outline"></ion-icon>
+          <ion-label style="margin-left: 10px;">Galería</ion-label>
+      </ion-button>
+      <ion-button class="button-camara" style="margin-top: 10px;"color="primary" fill="outline" slot="end" (click)="abrirCamara()">
+          <ion-icon name="camera-outline"></ion-icon>
+          <ion-label style="margin-left: 10px;">Cámara</ion-label>
+      </ion-button>
+      </div>
   </ion-list>
   <div class="registration-book">
     <img src="../../../assets/publicar-libro.jpg">

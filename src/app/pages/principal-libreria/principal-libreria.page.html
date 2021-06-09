@@ -13,8 +13,12 @@
       </ion-segment>
     </ion-toolbar>
     
+     <!-- Eventos -->
       <ion-card *ngFor="let evento of eventosPropios">
-        <img src="../../../assets/eventoa.jpg">
+        <div class="imagen">
+          <img class="imagenCard" *ngIf="evento.imagenEvento" src="{{evento.imagenEvento}}">
+          <img class="imagenCard" *ngIf="!evento.imagenEvento" src="../../../assets/evento.jpg">
+        </div>
         <ion-card-header color="light" style="height: 45px;">
           <ion-card-title class="card-titulo"><h4>{{evento.nombreEvento}}</h4></ion-card-title>
         </ion-card-header>
@@ -33,8 +37,12 @@
       </ion-card> 
     </div>
 
+    <!-- Libros -->
     <ion-card *ngFor="let libro of librosPropios">
-      <img src="../../../assets/publicar-libro.jpg">
+      <div class="imagen">
+        <img class="imagenCard" *ngIf="libro.imagenLibro" src="{{libro.imagenLibro}}">
+        <img class="imagenCard" *ngIf="!libro.imagenLibro" src="../../../assets/registro-bibliofilo.jpg">
+      </div>
       <ion-card-header color="light" style="height: 45px;">
         <ion-card-title class="card-titulo"><h4>{{libro.nombreLibro}}</h4></ion-card-title>
       </ion-card-header>
@@ -54,14 +62,12 @@
         </div>
       </ion-item>
     </ion-card>
-
-    <ion-infinite-scroll threshold="200px">
+    <ion-infinite-scroll threshold="200px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content
       loadingSpinner="circular"
       loadingText="Cargando...">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
-
 </ion-content>
   
   <ion-footer class="bar-stable">

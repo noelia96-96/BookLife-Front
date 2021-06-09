@@ -15,10 +15,18 @@
 
     <!-- Libros -->
     <ion-card *ngFor="let libro of librosPropios">
-      <img src="../../../assets/pb.jpg">
+      <div class="imagen">
+        <img class="imagenCard" *ngIf="libro.imagenLibro" src="{{libro.imagenLibro}}">
+        <img class="imagenCard" *ngIf="!libro.imagenLibro" src="../../../assets/registro-bibliofilo.jpg">
+      </div>
       <ion-card-header color="light" style="height: 45px;">
         <ion-card-title class="cardStyle"><h4>{{libro.nombreLibro}}</h4></ion-card-title>
       </ion-card-header>
+      <ion-card-content style="margin-top: 12px;">
+        <b>Género: </b>{{libro.genero}}<br>
+        <b>Autor: </b>{{libro.autor}}<br>
+        <b>Precio: </b>{{libro.precio}}
+      </ion-card-content>
       <ion-item color="light">
         <ion-button *ngIf="!libro.participantes.includes(this.usuario)" class="fav" (click)="reservarLibro(libro)" expand="block" fill="clear" shape="round">
          <ion-icon name="bag-outline" color="dark"></ion-icon>
@@ -31,17 +39,26 @@
 
     <!-- Eventos -->
     <ion-card *ngFor="let evento of eventosPropios">
-      <img src="../../../assets/evento.jpg">
+      <div class="imagen">
+        <img class="imagenCard" *ngIf="evento.imagenEvento" src="{{evento.imagenEvento}}">
+        <img class="imagenCard" *ngIf="!evento.imagenEvento" src="../../../assets/evento.jpg">
+      </div>
       <ion-card-header color="light" style="height: 45px;">
         <ion-card-title class="cardStyle"><h4>{{evento.nombreEvento}}</h4></ion-card-title>
       </ion-card-header>
+      <ion-card-content style="margin-top: 12px;">
+        <b>Ciudad: </b>{{evento.ciudad}}<br>
+        <b>Direccion: </b>{{evento.direccion}}<br>
+        <b>Fecha: </b>{{evento.fecha | date: 'dd/MM/yyyy'}}<br>
+        <b>Hora: </b>{{evento.hora | date: 'HH:mm'}}
+      </ion-card-content>
         <ion-item color="light">
         <ion-button class="apuntarse" *ngIf="!evento.participantes.includes(this.usuario)" (click)="apuntarse(evento)" fill="outline" slot="end" expand="block" [mode]="'md'">Apuntarse</ion-button>
         <ion-button class="desapuntarse" *ngIf="evento.participantes.includes(this.usuario)" (click)="desapuntarse(evento)" fill="outline" slot="end" expand="block" [mode]="'md'" color="dark" >Borrarse</ion-button>
       </ion-item>
     </ion-card>
   </div>
-  <ion-infinite-scroll threshold="200px">
+  <ion-infinite-scroll threshold="200px" (ionInfinite)="loadData($event)">
     <ion-infinite-scroll-content
       loadingSpinner="circular"
       loadingText="Cargando...">

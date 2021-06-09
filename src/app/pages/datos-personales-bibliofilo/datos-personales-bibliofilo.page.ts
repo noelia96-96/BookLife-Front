@@ -45,11 +45,6 @@ export class DatosPersonalesBibliofiloPage implements OnInit {
     this.myDefaultSexo = this.nuevoUsuario.sexo;
 }
 
-  ngAfterViewInit() {
-    console.log(this.miCiudad);
-    console.log(this.miSexo);
-  }
-
   seleccionarCiudad(data){
     this.nuevoUsuario.ciudad = data.detail.value;
   }
@@ -61,7 +56,7 @@ export class DatosPersonalesBibliofiloPage implements OnInit {
 
   guardarDatosEditadosBibliofilo(){
     this._usuarioService.guardarDatosEditadosBibliofilo(); 
-    this.router.navigate(['/perfil-bibliofilo']);
+    this.router.navigate(['/perfil']);
   }
 
   cancelar(){

@@ -7,7 +7,7 @@ export interface Evento {
     ciudad: String;
     hora: Date;
     participantes: String[];
-    //imagen: string
+    imagenEvento?: String
 }
 
 export interface RootEvento {

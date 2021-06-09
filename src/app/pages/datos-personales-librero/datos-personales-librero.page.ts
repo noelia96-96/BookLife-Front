@@ -43,13 +43,7 @@ export class DatosPersonalesLibreroPage implements OnInit {
     await this._usuarioService.mostrarUsuario();
     this.nuevoUsuario = this._usuarioService.usuario[0][0];
     this.myDefaultCiudad = this.nuevoUsuario.ciudad;
-    console.log(this.nuevoUsuario)
-    console.log(this.myDefaultCiudad)
 }
-
-  ngAfterViewInit() {
-    console.log(this.miCiudad);
-  }
 
   seleccionarCiudad(data){
     this.nuevoUsuario.ciudad = data.detail.value;
@@ -57,6 +51,7 @@ export class DatosPersonalesLibreroPage implements OnInit {
 
   guardarDatosEditadosLibreria(){
     this._usuarioService.guardarDatosEditadosLibreria(); 
+    this._usuarioService.usuarioActual.nombre = this.nuevoUsuario.nombre;
     this.router.navigate(['/perfil-libreria']);
   }
 

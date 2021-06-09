@@ -31,7 +31,6 @@ public libreriaPinchadaCard : any;
   }
 
    registroLibreria(dato:any){
-     console.log(dato)
     return new Promise<any>((resolve, reject)=>{
       this._http.post(`${environment.urlUsuario}registroLibreria`,dato).subscribe((resp:RespuestaPost)=>{
           resolve(resp);
@@ -100,8 +99,7 @@ public libreriaPinchadaCard : any;
   mostrarUsuario(){
       return new Promise<RootUsuarios>(resolve=>{
         this._http.get<RootUsuarios>(`${environment.urlUsuario}mostrarUsuario`).subscribe(resp=>{
-          this.usuario=resp.usuario;
-          console.log(this.usuario)
+        this.usuario=resp.usuario;
       resolve(resp);
      });
    });
@@ -114,8 +112,7 @@ public libreriaPinchadaCard : any;
       }
       return new Promise<RootUsuarios>(resolve=>{
         this._http.post<RootUsuarios>(`${environment.urlUsuario}mostrarLibreria`,datos).subscribe(resp=>{
-          this.usuarioLibreria=resp.usuario[0];
-          console.log(this.usuarioLibreria)
+        this.usuarioLibreria=resp.usuario[0];
       resolve(resp);
      });
    });
@@ -123,7 +120,6 @@ public libreriaPinchadaCard : any;
 
 //Guardar datos personales editados de la libreria
 guardarDatosEditadosLibreria(){ 
-  console.log(this.usuario[0][0]);
   return new Promise<any>(resolve=>{
     this._http.post(`${environment.urlUsuario}guardar-datos-editados-libreria`,this.usuario[0][0]).subscribe((resp:any)=>{
       if(resp.status=='ok' && resp.token){
@@ -157,7 +153,6 @@ guadarLibreriaFav(libreria){
   let datos = {
        libreria:libreria,
       }
-    console.log(datos);
    return new Promise<any>(resolve=>{
     this._http.post(`${environment.urlUsuario}guadarLibreriaFav`,datos).subscribe((resp:any)=>{
       resolve(resp);
@@ -170,7 +165,6 @@ borrarLibreriaFav(libreria){
    let datos = {
        libreria:libreria,
       }
-    console.log(datos);
    return new Promise<any>(resolve=>{
     this._http.post(`${environment.urlUsuario}borrarLibreriaFav`,datos).subscribe((resp:any)=>{
       resolve(resp);
@@ -186,8 +180,7 @@ mostrarLibreriasFavoritas(limit:number){
       }
        return new Promise<RootUsuarios>(resolve=>{
         this._http.post<RootUsuarios>(`${environment.urlUsuario}mostrarLibreriasFavoritas`,datos).subscribe(resp=>{
-          this.usuarioLibreria=resp.usuario[0];
-          console.log(this.usuarioLibreria)
+        this.usuarioLibreria=resp.usuario[0];
       resolve(resp);
      });
    });

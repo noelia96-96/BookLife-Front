@@ -1,5 +1,5 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar class="toolbar-color">
+  <ion-toolbar class="cabecera">
     <ion-title>Login</ion-title>
     <ion-buttons slot="start">
       <ion-back-button [defaultHref]="'/'" [mode]="'md'"></ion-back-button>
@@ -24,13 +24,6 @@
       <ion-button class="log-button" (click)="login()" disabled="{{!this.usuario || !this.pwd }}" style="margin-top: 10px;" expand="block"  color="primary">Login</ion-button>
     </div>
   </form>
-  
-  <!-- <ion-footer class="footer-login">
-    <div>
-      <span class="olvidarUsuario" (click)="olvidarUsuario()">He olvidado mi usuario</span>
-      <span class="olvidarContrasena" (click)="olvidarContrasena()">He olvidado mi contraseña</span>
-    </div>
-  </ion-footer> -->
 </ion-content>
 
 

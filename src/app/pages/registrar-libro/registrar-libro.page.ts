@@ -4,7 +4,7 @@ import { LibroService } from '../../services/libro.service';
 import { ActivatedRoute} from '@angular/router';
 import { UsuarioService } from '../../services/usuario.service';
 import { Libro } from '../../interfaces/libro';
-
+import { Camera } from '@ionic-native/camera/ngx';
 
 @Component({
   selector: 'app-registrar-libro',
@@ -12,14 +12,12 @@ import { Libro } from '../../interfaces/libro';
   styleUrls: ['./registrar-libro.page.scss'],
 })
 export class RegistrarLibroPage implements OnInit {
- 
-
- 
 
   constructor(
     private _router: Router,
     private _libroService:LibroService,
     private _usuarioService:UsuarioService,
+    private camera : Camera
     ) { }
 
   public usuario: string;
@@ -30,6 +28,7 @@ export class RegistrarLibroPage implements OnInit {
   public autor: string;
   public precio: number;
   public participantes: string[] = [];
+  mostrarImagen : string;
 
   async ngOnInit() {
     await this._usuarioService.compruebaSiLogado();
@@ -43,9 +42,9 @@ export class RegistrarLibroPage implements OnInit {
       genero: this.genero,
       autor: this.autor,
       precio: this.precio,
-      participantes: this.participantes
+      participantes: this.participantes,
+      base64 : this.mostrarImagen
     }
-    console.log(data);
     await this._libroService.registrarLibro(data);
 
     this._router.navigate(['/principal-libreria']);
@@ -57,9 +56,42 @@ export class RegistrarLibroPage implements OnInit {
   
   }
 
+  abrirGaleria(){
+    this.camera.getPicture({
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.PHOTOLIBRARY,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: false,
+      encodingType: this.camera.EncodingType.JPEG,
+      targetHeight: 1024,
+      targetWidth: 1024,
+      correctOrientation: true,
+      saveToPhotoAlbum: true
+    }).then(resultado =>{
+      this.mostrarImagen = 'data:image/jpeg;base64,' + resultado;
 
- 
+    }).catch(err =>{
+      console.log('Err', err);
+    })
 
+  }
 
+  abrirCamara(){
+    this.camera.getPicture({
+      destinationType: this.camera.DestinationType.DATA_URL,
+      sourceType: this.camera.PictureSourceType.CAMERA,
+      mediaType: this.camera.MediaType.PICTURE,
+      allowEdit: false,
+      encodingType: this.camera.EncodingType.JPEG,
+      targetHeight: 1024,
+      targetWidth: 1024,
+      correctOrientation: true,
+      saveToPhotoAlbum: true
+    }).then(resultado =>{
+      this.mostrarImagen = 'data:image/jpeg;base64,' + resultado;
 
+    }).catch(err =>{
+      console.log('Err', err);
+    })
+  }
 }

@@ -22,7 +22,6 @@ export class LibroService {
       public libroCardPinchada : any;
 
       registrarLibro(dato:any){
-        console.log(dato)
       return new Promise<any>((resolve, reject)=>{
         this._http.post(`${environment.urlLibro}registrarLibro`,dato).subscribe((resp:any)=>{
           if(resp.status=='ok'){
@@ -40,9 +39,7 @@ export class LibroService {
       }
       return new Promise<RootLibro>(resolve=>{
         this._http.post<RootLibro>(`${environment.urlLibro}mostrarLibro`,datos).subscribe(resp=>{
-          console.log(resp)
           this.librosPropios=resp.libro[0];
-          console.log(resp)
       resolve(resp);
      });
    });
@@ -55,9 +52,7 @@ export class LibroService {
       }
        return new Promise<RootLibro>(resolve=>{
         this._http.post<RootLibro>(`${environment.urlLibro}mostrarLibrosBibliofilo`,datos).subscribe(resp=>{
-          console.log(resp)
           this.librosPropios=resp.libro[0];
-          console.log(resp)
       resolve(resp);
      });
    });
@@ -121,7 +116,6 @@ getToken(){
 }
 
 reservarLibro(datos:any){
-  console.log(datos);
   return new Promise<any>(resolve=>{
     this._http.post(`${environment.urlLibro}reservarLibro`,datos).subscribe((resp:any)=>{
       if(resp.status=='ok' && resp.token){

@@ -33,7 +33,16 @@ export class PerfilPage implements OnInit {
   public _id:String;
 
   //Para saber en que eventos estamos
-  booleanEventos : boolean = true;
+  booleanEventos : boolean = false;
+
+  //Para saber en que Libros estamos
+  booleanLibros : boolean = false;
+
+  //Para saber en que Librerias estamos
+  booleanLibrerias : boolean = false;
+
+  //Para saber en que Favoritos estamos
+  booleanFavoritos : boolean = false;
 
   //lista de eventos propios
   eventosPropios : Evento[]; 
@@ -63,7 +72,6 @@ export class PerfilPage implements OnInit {
     
     const logado  = await this._usuarioService.compruebaSiLogado();
     this.usuarioActual = this._usuarioService.usuarioActual;
-    console.log(this.usuarioActual);
     if(!logado){
       this.router.navigate(['/inicio']);
       return;
@@ -89,17 +97,37 @@ export class PerfilPage implements OnInit {
         await this._eventoService.getEventos(this.limitePropio);
         this.eventosPropios = this._eventoService.eventosPropios;
 
-      }else{
+      }else if(this.booleanLibrerias){
 
-        //limite de libros propios
-        this.limiteLibrosPropio = this.limiteLibrosPropio + 3;
+        //limite de usuarios tipo - libreria
+        this.limiteUsuariosLibreros = this.limiteUsuariosLibreros + 3;
+
+        //llamar al servicio para llamar al back para recuperar los libros
+        await this._usuarioService.mostrarLibreria(this.limiteUsuariosLibreros);
+          
+        //Carga del servicio la lista de usuarios
+        this.usuariosLibreros = this._usuarioService.usuarioLibreria;
+
+      }else if(this.booleanLibros){
+
+        //Limite de libros
+        this.limiteLibrosPropio = this.limiteLibrosPropio+3; 
+
+        //Llamar al servicio para llamar al back para recuperar los libros
+        await this._libroService.mostrarLibros(this.limiteLibrosPropio);
         
-        //Cargar en la lista de libros propios
-        await this._libroService.getLibros(this.limiteLibrosPropio);
+        //Carga del servicio la lista de libros
         this.librosPropios = this._libroService.librosPropios;
 
-        //Cargar los usuarios
-        await this._usuarioService.mostrarLibreria(this.limiteUsuariosLibreros);
+      }else if(this.booleanFavoritos){
+
+        //Limite favoritos
+        this.limiteFavoritos = this.limiteFavoritos +3; 
+
+        //Llamar al servicio para llamar al back para recuperar las librerias favoritas 
+        await this._usuarioService.mostrarLibreriasFavoritas(this.limiteFavoritos);
+        
+        //Carga del servicio la lista de favoritos 
         this.usuariosLibreros = this._usuarioService.usuarioLibreria;
 
       }
@@ -113,6 +141,12 @@ export class PerfilPage implements OnInit {
   }
 
 async librerias() {
+
+    //Poner a true el boolean de librerias para saber que estamos viendo librerias
+    this.booleanLibrerias=true;
+    this.booleanFavoritos=false;
+    this.booleanEventos=false;
+    this.booleanLibros=false;
 
     //Quitar de la lista contraria los eventos
     this.eventosPropios = []; 
@@ -134,8 +168,11 @@ async librerias() {
 }
 
 async eventos() {
-    this.booleanEventos = true;
-
+    //Poner a true el boolean de Eventos para saber que estamos viendo Eventos
+    this.booleanLibrerias=false;
+    this.booleanFavoritos=false;
+    this.booleanEventos=true;
+    this.booleanLibros=false;
     //Quitar de la lista contraria las librerias
     this.usuariosLibreros = []; 
 
@@ -153,6 +190,12 @@ async eventos() {
 }
 
 async libros() {
+    //Poner a true el boolean de Libros para saber que estamos viendo Libros
+    this.booleanLibrerias=false;
+    this.booleanFavoritos=false;
+    this.booleanEventos=false;
+    this.booleanLibros=true;
+
     //Quitar de la lista contraria los eventos
     this.eventosPropios = []; 
 
@@ -172,6 +215,12 @@ async libros() {
 
 //Boton del menu - favoritos
 async fav() {
+
+    //Poner a true el boolean de Favoritos para saber que estamos viendo Favoritos
+    this.booleanLibrerias=false;
+    this.booleanFavoritos=true;
+    this.booleanEventos=false;
+    this.booleanLibros=false;
 
     //Quitar de la lista contraria los eventos
     this.eventosPropios = []; 
@@ -314,7 +363,6 @@ async quitarReservaLibro(libro:Libro){
   
 verLibreria(usuario){
   this._usuarioService.libreriaPinchadaCard = usuario;  
-  console.log(this._usuarioService.libreriaPinchadaCard)
   this.router.navigate(['/card-libreria']);
 }
 

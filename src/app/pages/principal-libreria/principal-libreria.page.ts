@@ -57,10 +57,11 @@ export class PrincipalLibreriaPage implements OnInit {
   }
   //Infinitte scroll
   async loadData(event){
+    console.log('load');
       //Tenemos una lista de todos los eventos cargados
       //Tenemos una lista que va a ir cargando los eventos poco a poco - esta es la que se usa
       if(this.booleanEventos){
-
+        console.log('load 1');
         //limite de eventos propios
         this.limitePropio = this.limitePropio + 3;
         
@@ -69,7 +70,7 @@ export class PrincipalLibreriaPage implements OnInit {
         this.eventosPropios = this._eventoService.eventosPropios;
 
       }else{
-
+        console.log('load 2');
         //limite de libros propios
         this.limiteLibrosPropio = this.limiteLibrosPropio + 3;
         
@@ -80,7 +81,8 @@ export class PrincipalLibreriaPage implements OnInit {
       }
 
       //completar la accion de cargar los eventos
-      event.target.complete(); 
+      event.target.complete();
+      console.log('load complete');
 
   }
 
@@ -124,7 +126,6 @@ export class PrincipalLibreriaPage implements OnInit {
   }
   
   editarEvento(_id:String){
-    console.log(_id);
     this._eventoService.idEventoModificar = _id;
     this.router.navigate(['/modal-demo']);
   }

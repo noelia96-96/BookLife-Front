@@ -11,7 +11,7 @@ import { TokenInterceptorService } from './interceptores/token-interceptor.servi
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { CallNumber} from '@ionic-native/call-number/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
-
+import { Camera } from '@ionic-native/camera/ngx';
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -30,6 +30,7 @@ import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
     StatusBar,
     SplashScreen,
     SocialSharing,
+    Camera,
     CallNumber,
     InAppBrowser,
 

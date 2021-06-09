@@ -53,8 +53,6 @@ export class EventoService {
       return new Promise<RootEvento>(resolve=>{
         this._http.post<RootEvento>(`${environment.urlEvento}mostrarEventoABibliofilo`,datos).subscribe(resp=>{
           this.eventosPropios=resp.evento[0];
-          console.log(resp);
-          console.log(this.eventosPropios);
       resolve(resp);
      });
    });
@@ -153,12 +151,9 @@ mostrarEventosPicharCard(limit:number, libreriaPinchada:string){
     limite: limit,
     libreriaPinchadaCard: libreriaPinchada
    }
-   console.log(datos);
     return new Promise<RootEvento>(resolve=>{
      this._http.post<RootEvento>(`${environment.urlEvento}mostrarEventosPicharCard`,datos).subscribe(resp=>{
       this.eventoCardPinchada = resp.evento[0];
-      console.log(resp);
-      console.log( this.eventoCardPinchada);
    resolve(resp);
   });
 });

@@ -93,24 +93,27 @@ export class CardLibreriaPage implements OnInit {
       //Tenemos una lista que va a ir cargando los eventos poco a poco - esta es la que se usa
       if(this.booleanEventos){
 
-        //limite de eventos propios
-        this.limitePropio = this.limitePropio + 3;
-        //Cargar en la lista propia mis eventos
-        await this._eventoService.getEventos(this.limitePropio);
-        this.eventosPropios = this._eventoService.eventosPropios;
+        //Limite de eventos propios
+        this.limitePropio = this.limitePropio+3; 
+        
+        //Llamar al servicio para llamar al back para recuperar los eventos
+        let nombreLibreriaPinchada = this.libreriaPinchada.nombre;
+        await this._eventoService.mostrarEventosPicharCard(this.limitePropio, nombreLibreriaPinchada); 
+        
+        //Carga del servicio la lista de los eventos
+        this.eventosPropios = this._eventoService.eventoCardPinchada;
 
       }else{
 
-        //limite de libros propios
-        this.limiteLibrosPropio = this.limiteLibrosPropio + 3;
-        
-        //Cargar en la lista de libros propios
-        await this._libroService.getLibros(this.limiteLibrosPropio);
-        this.librosPropios = this._libroService.librosPropios;
+        //Limite de libros
+        this.limiteLibrosPropio = this.limiteLibrosPropio+3; 
 
-        //Cargar los usuarios
-        await this._usuarioService.mostrarLibreria(this.limiteUsuariosLibreros);
-        this.usuariosLibreros = this._usuarioService.usuarioLibreria;
+        //Llamar al servicio para llamar al back para recuperar los libros
+        let nombreLibreriaPinchada = this.libreriaPinchada.nombre;
+        await this._libroService.mostrarLibrosPicharCard(this.limiteLibrosPropio, nombreLibreriaPinchada);
+
+        //Carga del servicio la lista de libros
+        this.librosPropios = this._libroService.libroCardPinchada;
 
       }
       //completar la accion de cargar los eventos
@@ -123,6 +126,8 @@ export class CardLibreriaPage implements OnInit {
   }
 
   async verLibrosPicharCard() {
+    this.booleanEventos = false;
+
     //Quitar de la lista contraria los eventos
     this.eventosPropios = []; 
 

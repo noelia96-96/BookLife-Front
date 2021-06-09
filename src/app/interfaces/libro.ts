@@ -5,7 +5,7 @@ export interface Libro {
     autor: String;
     precio: String;
     participantes: String[];
-    //imagen: string
+    imagenLibro?: String
 }
 
 export interface RootLibro {
