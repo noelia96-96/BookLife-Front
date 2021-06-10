@@ -91,44 +91,87 @@ export class PerfilPage implements OnInit {
       //Tenemos una lista que va a ir cargando los eventos poco a poco - esta es la que se usa
       if(this.booleanEventos){
 
-        //limite de eventos propios
+        //Limite de eventos propios
         this.limitePropio = this.limitePropio + 3;
+
+        //Antes de llamar al servicio coger los eventos que tenemos ahora mismo
+        const numeroVariableAntiguoEvento = this.eventosPropios.length;
+
         //Cargar en la lista propia mis eventos
         await this._eventoService.getEventos(this.limitePropio);
-        this.eventosPropios = this._eventoService.eventosPropios;
+
+        //Saber los eventos que tenemos nuevos
+        const numeroVariableNuevoEvento = this._eventoService.eventosPropios.length;
+
+        //Carga del servicio la lista de los eventos
+        if(numeroVariableAntiguoEvento == numeroVariableNuevoEvento){
+          event.target.disabled = true;
+        }else{
+          this.eventosPropios = this._eventoService.eventosPropios;
+        }        
 
       }else if(this.booleanLibrerias){
 
-        //limite de usuarios tipo - libreria
+        //Limite de usuarios tipo - libreria
         this.limiteUsuariosLibreros = this.limiteUsuariosLibreros + 3;
 
-        //llamar al servicio para llamar al back para recuperar los libros
+        //Antes de llamar al servicio coger las librerias que tenemos ahora mismo
+        const numeroVariableAntiguaLibreria = this.usuariosLibreros.length;
+
+        //Llamar al servicio para llamar al back para recuperar los libros
         await this._usuarioService.mostrarLibreria(this.limiteUsuariosLibreros);
-          
-        //Carga del servicio la lista de usuarios
-        this.usuariosLibreros = this._usuarioService.usuarioLibreria;
+
+        //Saber las librerias que tenemos nuevas
+        const numeroVariableNuevaLibreria = this._usuarioService.usuarioLibreria.length;
+
+        //Carga del servicio la lista de las librerias
+        if(numeroVariableAntiguaLibreria == numeroVariableNuevaLibreria){
+          event.target.disabled = true;
+        }else{
+          this.usuariosLibreros = this._usuarioService.usuarioLibreria;
+        }   
 
       }else if(this.booleanLibros){
 
         //Limite de libros
         this.limiteLibrosPropio = this.limiteLibrosPropio+3; 
 
+        //Antes de llamar al servicio coger los libros que tenemos ahora mismo
+        const numeroVariableAntiguoLibro = this.librosPropios.length;
+
         //Llamar al servicio para llamar al back para recuperar los libros
         await this._libroService.mostrarLibros(this.limiteLibrosPropio);
         
-        //Carga del servicio la lista de libros
-        this.librosPropios = this._libroService.librosPropios;
+        //Saber los libros que tenemos nuevos
+        const numeroVariableNuevoLibro = this._libroService.librosPropios.length;
+
+        //Carga del servicio la lista de los libros
+        if(numeroVariableAntiguoLibro == numeroVariableNuevoLibro){
+          event.target.disabled = true;
+        }else{
+          this.librosPropios = this._libroService.librosPropios;
+        }
 
       }else if(this.booleanFavoritos){
 
         //Limite favoritos
         this.limiteFavoritos = this.limiteFavoritos +3; 
 
+        //Antes de llamar al servicio coger los favoritos que tenemos ahora mismo
+        const numeroVariableAntiguoFavorito = this.usuariosLibreros.length;
+
         //Llamar al servicio para llamar al back para recuperar las librerias favoritas 
         await this._usuarioService.mostrarLibreriasFavoritas(this.limiteFavoritos);
         
-        //Carga del servicio la lista de favoritos 
-        this.usuariosLibreros = this._usuarioService.usuarioLibreria;
+        //Saber los favoritos que tenemos nuevos
+        const numeroVariableNuevoFavorito = this._usuarioService.usuarioLibreria.length;
+
+        //Carga del servicio la lista de los favoritos
+        if(numeroVariableAntiguoFavorito == numeroVariableNuevoFavorito){
+          event.target.disabled = true;
+        }else{
+          this.usuariosLibreros = this._usuarioService.usuarioLibreria;
+        }
 
       }
       //completar la accion de cargar los eventos
@@ -141,6 +184,8 @@ export class PerfilPage implements OnInit {
   }
 
 async librerias() {
+
+   this.infiniteScroll.disabled = false;
 
     //Poner a true el boolean de librerias para saber que estamos viendo librerias
     this.booleanLibrerias=true;
@@ -168,6 +213,9 @@ async librerias() {
 }
 
 async eventos() {
+
+    this.infiniteScroll.disabled = false;
+
     //Poner a true el boolean de Eventos para saber que estamos viendo Eventos
     this.booleanLibrerias=false;
     this.booleanFavoritos=false;
@@ -190,6 +238,9 @@ async eventos() {
 }
 
 async libros() {
+    
+    this.infiniteScroll.disabled = false;
+
     //Poner a true el boolean de Libros para saber que estamos viendo Libros
     this.booleanLibrerias=false;
     this.booleanFavoritos=false;
@@ -215,6 +266,8 @@ async libros() {
 
 //Boton del menu - favoritos
 async fav() {
+
+    this.infiniteScroll.disabled = false;
 
     //Poner a true el boolean de Favoritos para saber que estamos viendo Favoritos
     this.booleanLibrerias=false;

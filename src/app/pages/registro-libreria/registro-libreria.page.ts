@@ -64,6 +64,14 @@ export class RegistroLibreriaPage implements OnInit {
       });
       await alert.present();
 
+    }else if(!this.web.includes('https://www.')){
+      const alert = await this.alertController.create({
+        cssClass: 'my-custom-class',
+        backdropDismiss: false,
+        subHeader: 'Formato incorrecto de la web: añade https://www.',
+        buttons: ['OK']
+      });
+      await alert.present();
     }
     else{
       const resultado = await this._usuarioService.registroLibreria(data);

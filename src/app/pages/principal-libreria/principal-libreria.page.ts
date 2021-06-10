@@ -57,36 +57,60 @@ export class PrincipalLibreriaPage implements OnInit {
   }
   //Infinitte scroll
   async loadData(event){
-    console.log('load');
       //Tenemos una lista de todos los eventos cargados
       //Tenemos una lista que va a ir cargando los eventos poco a poco - esta es la que se usa
       if(this.booleanEventos){
-        console.log('load 1');
-        //limite de eventos propios
+        //Limite de eventos propios
         this.limitePropio = this.limitePropio + 3;
+
+        //Antes de llamar al servicio coger los eventos que tenemos ahora mismo
+        const numeroVariableAntiguoEvento = this.eventosPropios.length;
         
         //Cargar en la lista propia mis eventos
         await this._eventoService.getEventos(this.limitePropio);
-        this.eventosPropios = this._eventoService.eventosPropios;
+
+        //Saber los eventos que tenemos nuevos
+        const numeroVariableNuevoEvento = this._eventoService.eventosPropios.length;
+
+        //Carga del servicio la lista de los eventos
+        if(numeroVariableAntiguoEvento == numeroVariableNuevoEvento){
+          event.target.disabled = true;
+        }else{
+          this.eventosPropios = this._eventoService.eventosPropios;
+        }
+
 
       }else{
-        console.log('load 2');
-        //limite de libros propios
+        //Limite de libros propios
         this.limiteLibrosPropio = this.limiteLibrosPropio + 3;
+
+        //Antes de llamar al servicio coger los libros que tenemos ahora mismo
+        const numeroVariableAntiguoLibro = this.librosPropios.length;
         
         //Cargar en la lista de libros propios
         await this._libroService.getLibros(this.limiteLibrosPropio);
-        this.librosPropios = this._libroService.librosPropios;
+
+        //Saber los libros que tenemos nuevos
+        const numeroVariableNuevoLibro = this._libroService.librosPropios.length;
+
+        //Carga del servicio la lista de los libros
+        if(numeroVariableAntiguoLibro == numeroVariableNuevoLibro){
+          event.target.disabled = true;
+        }else{
+          this.librosPropios = this._libroService.librosPropios;
+        }
 
       }
 
-      //completar la accion de cargar los eventos
+      //Completar la accion de cargar los eventos
       event.target.complete();
-      console.log('load complete');
 
   }
 
   async loadEventosPropios(){
+
+    this.infiniteScroll.disabled = false;
+
     this.booleanEventos = true;
     
     //Quitar de la lista contraria los libros 
@@ -103,6 +127,9 @@ export class PrincipalLibreriaPage implements OnInit {
   }
 
   async loadLibrosPropios(){
+
+    this.infiniteScroll.disabled = false;
+
     this.booleanEventos = false;
     //Quitar de la lista contraria los eventos 
     this.eventosPropios = []; 

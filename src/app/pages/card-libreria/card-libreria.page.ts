@@ -95,25 +95,45 @@ export class CardLibreriaPage implements OnInit {
 
         //Limite de eventos propios
         this.limitePropio = this.limitePropio+3; 
-        
+
+        //Antes de llamar al servicio coger los eventos que tenemos ahora mismo
+        const numeroVariableAntiguoEvento = this.eventosPropios.length;
+
         //Llamar al servicio para llamar al back para recuperar los eventos
         let nombreLibreriaPinchada = this.libreriaPinchada.nombre;
         await this._eventoService.mostrarEventosPicharCard(this.limitePropio, nombreLibreriaPinchada); 
         
+        //Saber los eventos que tenemos nuevos
+        const numeroVariableNuevoEvento = this._eventoService.eventoCardPinchada.length;
+
         //Carga del servicio la lista de los eventos
-        this.eventosPropios = this._eventoService.eventoCardPinchada;
+        if(numeroVariableAntiguoEvento == numeroVariableNuevoEvento){
+          event.target.disabled = true;
+        }else{
+          this.eventosPropios = this._eventoService.eventoCardPinchada;
+        }
 
       }else{
 
         //Limite de libros
         this.limiteLibrosPropio = this.limiteLibrosPropio+3; 
 
+        //Antes de llamar al servicio coger los libros que tenemos ahora mismo
+        const numeroVariableAntiguoLibro = this.librosPropios.length;
+
         //Llamar al servicio para llamar al back para recuperar los libros
         let nombreLibreriaPinchada = this.libreriaPinchada.nombre;
         await this._libroService.mostrarLibrosPicharCard(this.limiteLibrosPropio, nombreLibreriaPinchada);
 
-        //Carga del servicio la lista de libros
-        this.librosPropios = this._libroService.libroCardPinchada;
+        //Saber los libros que tenemos nuevos
+        const numeroVariableNuevoLibro = this._libroService.libroCardPinchada.length;
+
+        //Carga del servicio la lista de los libros
+        if(numeroVariableAntiguoLibro == numeroVariableNuevoLibro){
+          event.target.disabled = true;
+        }else{
+          this.librosPropios = this._libroService.libroCardPinchada;
+        }
 
       }
       //completar la accion de cargar los eventos
@@ -126,6 +146,9 @@ export class CardLibreriaPage implements OnInit {
   }
 
   async verLibrosPicharCard() {
+    
+    this.infiniteScroll.disabled = false;
+
     this.booleanEventos = false;
 
     //Quitar de la lista contraria los eventos
@@ -146,6 +169,9 @@ export class CardLibreriaPage implements OnInit {
 }
 
 async verEventosPincharCard() {
+    
+    this.infiniteScroll.disabled = false;
+
     this.booleanEventos = true;
 
     //Quitar de la lista contraria las librerias
